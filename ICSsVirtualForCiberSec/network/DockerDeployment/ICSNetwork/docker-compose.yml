@@ -1,0 +1,51 @@
+version: '3'
+
+networks:
+  ics:
+    driver: bridge
+
+services:
+
+  scadalts:
+    image: kamiljarmusik/scadalts-2.6.18-mysql-8
+    ports:
+      - "8080:8080"
+    env_file: ./database/db.env
+    expose: [ "8080", "8000" ]
+    networks:
+      - ics
+
+  openplc:
+    image: sflorenz05/open-plc:v0.1
+    depends_on:
+      - scadalts
+    ports:
+      - "502:502"
+      - "8081:8080"
+    command: -privileged
+    networks:
+      - ics
+
+  matlab:
+    image: newmatlab:r2022a_gcc
+    shm_size: 512M
+    ports:
+      - "5901:5901"
+      - "6080:6080"
+    environment:
+      PASSWORD: "ILoveMATLAB"
+    command: -vnc
+    volumes:
+      - ../../../wwtp/simulink:/home/matlab/Documents/MATLAB/simulink
+    networks:
+      - ics
+  
+  simlink:
+    image: frolvlad/alpine-gxx
+    #command: g++ /simLink/simlink.cpp -o simlink -pthread
+    command: tail -F anything
+    volumes: 
+      - ../../../wwtp/interface_simLink:/simLink
+    networks:
+      - ics
+
