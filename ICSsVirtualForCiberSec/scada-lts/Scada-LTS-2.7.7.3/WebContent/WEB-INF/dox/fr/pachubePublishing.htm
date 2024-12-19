@@ -1,0 +1,30 @@
+<!--
+    Mango -Open Source M2M - http://mango.serotoninsoftware.com
+    Copyright (C) 2006-2011 Serotonin Software Technologies Inc.
+    @auteur Matthew Lohbihler
+    
+    Ce programme est un logiciel libre : vous pouvez le redistribuer et/ou le modifier
+    aux termes de la licence publique générale GNU telle que publiée par
+    la Free Software Foundation, soit la version 3 de la licence, ou
+    (à votre choix) toute version ultérieure.
+
+    Ce programme est distribué dans l'espoir qu'il sera utile,
+    mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de
+    la qualité marchande ou l'adéquation à un usage particulier.  Voir le
+    Licence publique générale GNU pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la licence publique générale de GNU
+    en même temps que ce programme.  Si ce n'est pas le cas, voir http://www.gnu.org/licenses/.
+ -->
+<h1>Vue d'ensemble</h1>
+<p>L'éditeur Pachube envoie chaque mise à jour de point (ou changement, selon le cas) à Pachube en utilisant la clé API, l'ID de flux et l'ID de flux de données donnés comme une requête HTTP distincte.</p>
+
+<h1>Propriétés</h1>
+<p>La clé <b>API Key</b> est nécessaire pour mettre à jour les données privées. Vous pouvez la trouver dans la zone "mes paramètres" lorsque vous vous connectez à votre compte Pachube. Les paramètres <b>Temps mort</b> et <b>Réessayer</b> sont utilisés pour gérer les pannes.</p>
+
+<h1>Réponse du HTTP</h1>
+<p>Tout autre code de réponse que "200 OK" est considéré comme une erreur, et une alarme sera déclenchée. Notez que - en fonction de votre compte chez Pachube - des restrictions de demande d'API peuvent s'appliquer. Voir <a href="http://community.pachube.com/api#rate_limit">http://community.pachube.com/api#rate_limit</a> pour plus de détails.</p>
+
+<h1>Points publiés</h1>
+<p>La section <b>Points</b> énumère les points à publier. La publication des points peut être activée (<img src="images/brick_go.png"/>) ou désactivée (<img src="images/brick_stop.png"/>). Désactiver un point permet de ne pas l'utiliser sans avoir à le supprimer explicitement. Les valeurs <b>ID de l'aliment</b> et <b>ID du flux de données</b> déterminent le flux de données qui sera mis à jour.</p>
+<p>Pour ajouter un point à la liste de points, sélectionnez-le dans la liste de points et cliquez sur l'icône <img src="images/icon_comp_add.png"/>. Pour supprimer un point existant, cliquez sur l'icône <img src="images/bullet_delete.png"/> qui lui est associée.</p>

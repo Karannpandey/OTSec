@@ -1,0 +1,28 @@
+<!--
+    Mango -Open Source M2M - http://mango.serotoninsoftware.com
+    Copyright (C) 2006-2011 Serotonin Software Technologies Inc.
+    @auteur Matthew Lohbihler
+    
+    Ce programme est un logiciel libre : vous pouvez le redistribuer et/ou le modifier
+    aux termes de la licence publique générale GNU telle que publiée par
+    la Free Software Foundation, soit la version 3 de la licence, ou
+    (à votre choix) toute version ultérieure.
+
+    Ce programme est distribué dans l'espoir qu'il sera utile,
+    mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de
+    la qualité marchande ou l'adéquation à un usage particulier.  Voir le
+    Licence publique générale GNU pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la licence publique générale de GNU
+    en même temps que ce programme.  Si ce n'est pas le cas, voir http://www.gnu.org/licenses/.
+ -->
+<p> Les expressions régulières (ou RegEx) sont un moyen puissant et concis d'analyser des données textuelles. Bien que leurs définitions semblent initialement obscures, avec un peu d'expérience, un grand nombre de problèmes d'analyse de texte deviennent facilement résolus. Les différentes implémentations de RegEx ont parfois des implémentations légèrement différentes de ses fonctions. Un tutoriel sur l'implémentation Java RegEx peut être trouvé <a href="http://java.sun.com/docs/books/tutorial/essential/regex/" target="_blank">ici</a>.</p>
+
+<p>De nombreux modèles RegEx utilisés dans Scada-LTS sont similaires. En général, l'intention est de localiser une valeur particulière dans un texte. En tant que tel, le modèle se compose de chaînes de préfixes et de suffixes qui identifient la valeur de manière unique, et d'un modèle de groupe qui extrait la valeur. Par exemple, le texte à analyser peut ressembler à ceci :</p>
+
+<pre>Ceci est le texte à analyser avec ma valeur de 1234 intégrée au milieu,</pre>
+
+<p>Si la valeur souhaitée est le "1234", un modèle RegEx qui fonctionne peut être:</p>
+<pre>ma valeur de (.* ?) intégré</pre>
+
+<p> Le point important est que le préfixe (c'est-à-dire "ma valeur de ") et le suffixe ("embedded") ne changent jamais entre de nouvelles instances du texte, et qu'ils définissent de manière unique l'emplacement de la valeur souhaitée. À l'extrême, notez que le préfixe "f" et le suffixe " " fonctionnent également dans ce cas, mais qu'ils fonctionnent moins bien dans les textes plus volumineux, ou si le texte change de manière significative.</p>

@@ -1,0 +1,28 @@
+<!--
+    Mango - M2M de código abierto - http://mango.serotoninsoftware.com 
+    Derechos de autor (C) 2006-2011 Serotonin Software Technologies Inc.
+    El autor Matthew Lohbihler    
+    Este programa es software libre: puedes redistribuirlo y/o modificarlo. bajo los términos de la Licencia Pública General de GNU,
+    publicada por la Fundación de Software Libre, ya sea la versión 3 de la licencia, o (su elección) cualquier versión posterior.
+    Este programa se distribuye con la esperanza de que sea útil,  pero SIN NINGUNA GARANTÍA; sin siquiera la garantía implícita de comerciabilidad o idoneidad para un propósito particular.  
+    Vea el Licencia Pública General de GNU para más detalles.
+    Debería haber recibido una copia de la Licencia Pública General de GNU.Al mismo tiempo que este programa.  Si no, véase http://www.gnu.org/licenses/.
+ -->
+<h1>Visión general</h1>
+<p>Los eventos programados se utilizan para plantear eventos en momentos específicos. Son similares a los detectores de eventos (en el sentido de que desencadenan eventos), pero se basan en el tiempo en lugar de puntos.</p>
+
+<h1>Lista de eventos programados</h1>
+<p> Para añadir un nuevo evento programado, haz clic en el icono <img src="images/clock_add.png"/>. Para editar un evento programado existente, haga clic en la descripción del evento en la lista de "Eventos programados".</p>
+
+<h1>Cambiar los detalles de un evento programado</h1>
+<p>El <b>Alias</b> es un valor opcional que se usará como descripción del evento en todo el sistema si se proporciona. De lo contrario, se utilizará la descripción generada automáticamente.</p>
+<p>El <b>Nivel de alarma</b> determina si el evento programado dispara una alarma cuando está activo, y si es así, la severidad de la alarma. Consulte la página de Ayuda General para obtener información sobre las alarmas.</p>
+<p>El <b>Tipo de calendario </b> determina el período base del evento. Estos tipos incluyen horarios, días, etc. Por ejemplo, un tipo de horario se producirá una vez por hora. Si se requiere un programa que se ejecute, por ejemplo, dos veces al día, es necesario definir dos eventos diarios programados, uno para cada hora. Sin embargo, es posible definir un patrón cron que se ejecuta varias veces durante un período. (Véase la documentación sobre el "patrón cron" para más información).</p>
+<p>Seleccionando <b>Volver a la normalidad</b> se determina si la alarma activada cuando el evento está activo se vuelve automáticamente a la normalidad cuando el evento se vuelve inactivo. Si se selecciona Return to Normal, es necesario definir cuándo el evento se vuelve inactivo.</p>
+<p>Un evento programado puede ser <b>Desactivado</b> para que no tenga lugar. Esto puede ser útil si no quieres borrar el evento, pero también si no quieres que esté actualmente activado.</p>
+
+<h1> Tiempos activos/inactivos</h1>
+<p>Los campos disponibles para cambiar los tiempos activos e inactivos dependen del tipo de horario seleccionado. La mayoría de los campos no necesitan más explicación que el hecho de que se basan exclusivamente en el calendario gregoriano. Para más información sobre los modelos de Cron, vea la documentación "Modelo de Cron".</p>
+<p> Los tiempos activos e inactivos pueden superponerse al período dado. Por ejemplo, un horario puede estar activo a las 55 horas e inactivo a las 5 horas (por lo tanto, activo durante 10 minutos). Obsérvese que es posible, aunque no muy útil, definir patrones de cron que no se activan e inactivan correctamente (es decir, pueden activarse varias veces antes de estar inactivos y viceversa).</p>
+
+<p> Para grabar un evento programado, haz clic en el icono <img src="images/save.png"/> en la esquina superior derecha. Para borrar un evento existente, haz clic en el icono <img src="images/delete.png"/>.</p>

@@ -1,0 +1,23 @@
+<!--
+    Mango -Open Source M2M - http://mango.serotoninsoftware.com
+    Copyright (C) 2006-2011 Serotonin Software Technologies Inc.
+    @auteur Matthew Lohbihler
+    
+    Ce programme est un logiciel libre : vous pouvez le redistribuer et/ou le modifier
+    aux termes de la licence publique générale GNU telle que publiée par
+    la Free Software Foundation, soit la version 3 de la licence, ou
+    (à votre choix) toute version ultérieure.
+
+    Ce programme est distribué dans l'espoir qu'il sera utile,
+    mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de
+    la qualité marchande ou l'adéquation à un usage particulier.  Voir le
+    Licence publique générale GNU pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la licence publique générale de GNU
+    en même temps que ce programme.  Si ce n'est pas le cas, voir http://www.gnu.org/licenses/.
+ -->
+<h1>Vue d'ensemble</h1>
+<p>La source de données VMStat est utilisée pour surveiller divers aspects des performances d'un hôte *nix. Lorsque la source de données démarre, un processus est lancé qui exécute le programme vmstat, et la sortie de ce processus est surveillée.</p>
+
+<h1>Configuration</h1>
+<p>Chaque source de données nécessite un <b>Nom</b>, qui peut être n'importe quelle description. Le paramètre <b>Les secondes du sondage</b> détermine la fréquence à laquelle le processus vmstat rapportera les données à Scada-LTS. Le paramètre <b>Échelle de sortie</b> peut être réglé pour ajuster automatiquement les valeurs d'octets à différentes échelles, y compris les octets, k, KB, m et MB.</p>

@@ -1,0 +1,33 @@
+<!--
+    Mango - M2M de código abierto - http://mango.serotoninsoftware.com 
+    Derechos de autor (C) 2006-2011 Serotonin Software Technologies Inc.
+    El autor Matthew Lohbihler    
+    Este programa es software libre: puedes redistribuirlo y/o modificarlo. bajo los términos de la Licencia Pública General de GNU,
+    publicada por la Fundación de Software Libre, ya sea la versión 3 de la licencia, o (su elección) cualquier versión posterior.
+    Este programa se distribuye con la esperanza de que sea útil,  pero SIN NINGUNA GARANTÍA; sin siquiera la garantía implícita de comerciabilidad o idoneidad para un propósito particular.  
+    Vea el Licencia Pública General de GNU para más detalles.
+    Debería haber recibido una copia de la Licencia Pública General de GNU.Al mismo tiempo que este programa.  Si no, véase http://www.gnu.org/licenses/.
+ -->
+<h1>Visión general</h1>
+<p>Las relaciones de puntos se utilizan para actualizar los puntos de destino a partir de los valores de los puntos de origen. Los puntos se sincronizarán según las reglas definidas por el usuario. En la práctica, un enlace puntual puede utilizarse para leer valores de un sistema (de una o más fuentes de datos) y asignarlos inmediatamente a otro sistema (a una o más fuentes de datos).</p>
+<p>El mismo resultado puede lograrse creando un detector que observe los cambios o actualizaciones de un punto de origen y luego creando un manejador de eventos de "punto de ajuste" para cada punto de destino definido. Sin embargo, es preferible utilizar enlaces puntuales por varias razones:</p>
+<ul>
+  <li>Un enlace puntual no crea un evento, lo que preserva los recursos del sistema y por lo tanto mejora el rendimiento.</li>
+  <li>Los enlaces de puntos permiten definir los guiones, dando al usuario más libertad</li>
+  <li>La interfaz de esta función está contenida en una sola página, lo que facilita su uso.</li>
+</ul>
+<p><b>Nota:</b> Un enlace puntual puede ser configurado de tal manera que pueden aparecer bucles infinitos. Scada-LTS detectará el problema, lo terminará e informará al usuario.</p>
+
+<h1>Lista de enlaces de puntos</h1>
+<p>Para añadir un enlace de punto, haz clic en el icono <img src="images/link_add.png"/>.Para modificar un enlace, haz clic en el enlace de la lista.</p>
+
+<h1>Estableciendo un enlace de punto</h1>
+<p>L'<b>ID de exportación</b> es el valor utilizado para identificar un vínculo en las diferentes instancias del Scada-LTS. Se utiliza en el menú de importación/exportación. Este valor, único, se genera de forma aleatoria, pero puede ser definido por el usuario para ser más explícito.</p>
+<p>El <b>punto de origen</b> es el punto cuyo valor será seguido. Este es el punto que definirá los valores objetivo.</p>
+<p>El <b>punto de destino </b> es el punto cuyo valor se asignará.</p>
+<p>El <b>Script</b> es opcional, transformará los valores de la fuente si es necesario. Se puede encontrar más información sobre los guiones en la ayuda de las propiedades de los meta puntos. El nombre de la variable en el contexto es "source". Un guión como "return source.value / 2;" asignará al valor objetivo la mitad del valor de la fuente. Tenga en cuenta que también se puede transformar el tipo de datos
+ .ejemplo "if (source.value &gt; 0) return true; return false;, que convertirá un valor numérico de la fuente en un valor binario de destino, Haga clic en el icono <img src="images/accept.png"/> para validar su guión (el punto de origen debe estar disponible).</p>
+<p> <b>Event</b> establecerá el tipo de actualización del punto de destino, en cada actualización del punto de origen (es decir, una nueva marca de tiempo no genera necesariamente un nuevo valor), o sólo en el cambio de valor (es decir, nueva marca de tiempo y nuevo valor).</p>
+<p>Un punto de enlace puede ser <b>Deshabilitado</b>. Es útil si no quieres borrarlo y no quieres usarlo temporalmente.</p>
+
+<p>Para guardar un punto de enlace, haz clic en el icono <img src="images/save.png"/> en la esquina superior derecha. Para borrar un enlace de punto, haz clic en el icono <img src="images/delete.png"/>.</p>

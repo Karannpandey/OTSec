@@ -1,0 +1,39 @@
+<!--
+    Mango - M2M de código abierto - http://mango.serotoninsoftware.com 
+    Derechos de autor (C) 2006-2011 Serotonin Software Technologies Inc.
+    El autor Matthew Lohbihler    
+    Este programa es software libre: puedes redistribuirlo y/o modificarlo. bajo los términos de la Licencia Pública General de GNU,
+    publicada por la Fundación de Software Libre, ya sea la versión 3 de la licencia, o (su elección) cualquier versión posterior.
+    Este programa se distribuye con la esperanza de que sea útil,  pero SIN NINGUNA GARANTÍA; sin siquiera la garantía implícita de comerciabilidad o idoneidad para un propósito particular.  
+    Vea el Licencia Pública General de GNU para más detalles.
+    Debería haber recibido una copia de la Licencia Pública General de GNU.Al mismo tiempo que este programa.  Si no, véase http://www.gnu.org/licenses/.
+ -->
+<h1>Visión general</h1>
+
+<p>El formato permite formatear un valor crudo para hacerlo más explícito para el usuario. Las opciones de formato dependen del tipo de valor que se muestre. Por lo tanto, sólo los formatos aplicables al valor de un punto se mostrarán en la lista desplegable del campo <b>Tipo</b>.</p>
+
+<h1>Binario</h1>
+<p>El tipo <b>Binario</b> permite al usuario definir una etiqueta para representar cada uno de los dos estados binarios(0 y 1). Todas las etiquetas están permitidas. También puedes definir un color para cada estado. Los ejemplos típicos de etiquetas son apagado/encendido, encendido/apagado, o verdadero/falso.</p>
+
+<p>El formato por defecto de un valor binario es <b>Simple</b>. Muestra el valor bruto, 0 o 1.</p>
+
+<h1>Digital</h1>
+<p>La opción <b>Analógico</b> permite al usuario definir un <b>Formato</b> que especificará por ejemplo el número de decimales a mostrar, y la presencia de mil separadores. (Véase la documentación "Número de formato"). También se puede añadir un <b>Suffix</b> para mostrar las unidades del valor. Los sufijos pueden contener entidades HTML como &deg;(escrito '&amp;deg;') para la visualización de la página. Ver <a href="http://www.w3.org/TR/REC-html40/sgml/entities.html" target="_blank">http://www.w3.org/TR/REC-html40/sgml/entities.html</a>
+ </p>
+
+<p>El tipo <b>Simple</b> es el formato por defecto para los valores numéricos. Muestra el valor sin modificaciones.</p>
+
+<p>El tipo <b>Rango</b> permite definir un formato de número <b>Formato</b> (Ver la documentación "Formato de número"), y textos de su elección para representar un valor según rangos de valores. A cada rango se le puede asignar un color distinto. El campo de formato se aplicará si el valor no corresponde a ningún rango definido. Por ejemplo, puedes clasificar la temperatura en "fría", "normal" y "cálida", y asignar un color para cada rango.</p>
+
+<p>El tipo <b>Hora</b> permite al usuario definir un <b>Formato</b> (Ver la documentación "formato de fecha/hora"). Un formato de fecha típico sería "MM dd, yyyy". Un tiempo sería "HH:mm:ss". Los formatos de fecha y hora pueden combinarse si es necesario. También es posible convertir los tiempos en milisegundos. Se usarán exponentes de potencia 10 para estas conversiones.
+  Por ejemplo, para convertir los segundos introduzca el parámetro 3, para los microsegundos introduzca -3. Si el valor ya está en milisegundos, introduzca 0. Se supone que los valores de tiempo comienzan en 0.1 de enero de 1970 a medianoche</p>
+
+<h1>Multiestado</h1>
+
+<p>La opción <b>Simple</b> es el formato por defecto para los valores multiestado. Esto muestra el valor bruto sin cambios.</p>
+
+<p>la opción <b>Multiestado</b> permite asociar un texto, elegido arbitrariamente, al valor de un estado para representar los diferentes estados del punto. Cada estado también puede tomar un color diferente. Si un informe no tiene una etiqueta asociada, se mostrará el valor. Ejemplos típicos de etiquetas encendidas/apagadas, o apagadas/calientes/frías.</p>
+
+<h1>Alfanumérico</h1>
+
+<p>La opción <b>Simple</b> es el único formato alfanumérico. Se mostrarán los valores brutos, opcionalmente acompañados de una opción <b>Suffix</b>..</p>

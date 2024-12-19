@@ -1,0 +1,82 @@
+<!--
+    Mango - Open Source M2M - http://mango.serotoninsoftware.com
+    Copyright (C) 2006-2011 Serotonin Software Technologies Inc.
+    @auteur Matthew Lohbihler
+    
+    Ce programme est un logiciel libre : vous pouvez le redistribuer et/ou le modifier
+    aux termes de la licence publique générale GNU telle que publiée par
+    la Free Software Foundation, soit la version 3 de la licence, ou
+    (à votre choix) toute version ultérieure.
+
+    Ce programme est distribué dans l'espoir qu'il sera utile,
+    mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de
+    la qualité marchande ou l'adéquation à un usage particulier.  Voir le
+    Licence publique générale GNU pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la licence publique générale de GNU
+    en même temps que ce programme.  Si ce n'est pas le cas, voir http://www.gnu.org/licenses/.
+ -->
+<h1>Vue d'ensembles</h1>
+<p>
+  Les gestionnaires d'événements fournissent un comportement défini par l'utilisateur qui doit être exécuté lors du déclenchement d'un événement particulier. Les événements peuvent être déclenchés en raison de diverses conditions du système (voir la section Événements sur la page d'aide générale pour plus d'informations). Lorsque cela se produit, les gestionnaires d'événements associés sont exécutés.
+</p>
+<p>
+  Il existe actuellement trois types de gestionnaires d'événements:
+</p>
+<ul>
+  <li><b>Gestionnaires de courrier électronique</b> : envoi de messages électroniques à des listes de destinataires</li>
+  <li><b>Gestionnaires de points de consigne</b> : permet de définir un point de consigne avec une valeur donnée</li>
+  <li><b>Gestionnaires de processus</b> : provoquent l'exécution du processus O/S donné</li>
+</ul>
+
+<h1>Types d'événements</h1>
+<p>
+  La section "Types d'événements" présente sous forme d'arbre tous les types d'événements disponibles dans le système. La branche "Détecteurs d'événements ponctuels" contient une liste de tous les points (indiqués par <img src="images/icon_comp.png"/>) du système qui ont des détecteurs d'événements. Les détecteurs d'événements sont répertoriés sous leurs branches de points respectives.
+</p>
+<p>
+  Les types d'événements pour les événements programmés, les détecteurs d'événements composés et les événements système sont répertoriés sous leurs branches respectives. La branche "Événements sources de données" contient une liste de toutes les sources de données qui peuvent déclencher des événements. Les événements sont répertoriés sous leur source de données respective.
+</p>
+<p>
+  Pour ajouter un nouveau gestionnaire d'événements, cliquez sur le type d'événement que vous souhaitez gérer ; la section des détails du gestionnaire d'événements s'affichera. Le gestionnaire d'événements réel ne sera pas enregistré avant que vous ne cliquiez sur l'icône <img src="images/save_add.png"/>. Pour modifier un gestionnaire existant, cliquez sur le nom du gestionnaire dans la liste des gestionnaires sous la branche du type d'événement.
+</p>
+<p>
+  Lorsque vous ajoutez un nouveau gestionnaire, vous devez sélectionner le <b>Type</b> du gestionnaire. Une fois que vous avez sauvegardé un gestionnaire, son type n'est plus modifiable.
+</p>
+
+<h1>Alias de l'événement</h1>
+<p>
+  Un alias d'événement arbitraire peut être défini, grâce auquel le gestionnaire d'événement sera identifié visuellement. Cet alias est également utilisé comme base de la ligne d'objet pour les gestionnaires d'événements de courrier électronique.
+</p>
+
+<h1>Modifier les gestionnaires existants</h1>
+<p>
+  Pour enregistrer les modifications apportées à un gestionnaire, cliquez sur l'icône <img src="images/save.png"/> en haut à droite de la section Gestionnaire d'événements. Pour supprimer un gestionnaire, cliquez sur l'icône <img src="images/delete.png"/>.
+</p>
+
+<h1>Édition des gestionnaires de courrier électronique</h1>
+<p>
+  Les gestionnaires de courrier électronique tiennent à jour jusqu'à trois listes de destinataires. La première est la liste à laquelle un message est envoyé lorsque l'événement est initialement soulevé. La deuxième est une liste optionnelle à laquelle envoyer les escalades. La troisième est une liste optionnelle envoyée lorsque l'événement devient inactif.
+</p>
+<p>
+  Pour ajouter une liste de diffusion à une liste de destinataires, sélectionnez-la dans la liste déroulante <b>Ajouter une liste de diffusion</b> et cliquez sur l'icône <img src="images/add.png"/> à côté de la liste déroulante. Pour ajouter un utilisateur, sélectionnez-le dans la liste <b>Ajouter utilisateur</b> et cliquez sur l'icône <img src="images/add.png"/> à côté de la liste déroulante. Pour ajouter une adresse électronique libre, entrez l'adresse dans la case <b>Ajouter une adresse</b> et cliquez sur l'icône <img src="images/add.png"/> à côté de la case. Pour supprimer un destinataire d'une liste, cliquez sur l'icône <img src="images/bullet_delete.png"/> à côté du destinataire. Pour tester une liste de destinataires, cliquez sur l'icône <img src="images/email_go.png"/> de la liste.
+</p>
+<p>
+  Pour faire envoyer des courriels d'escalade, cochez la case <b>Envoyer l'escalade</b>, et entrez le <b>Destinataires de l'escalade</b>. L'e-mail d'escalade ne sera envoyé que si l'événement associé est resté actif pendant la période <b>Escalade si actif pendant la période</b>.
+</p>
+<p>
+  Une notification inactive d'événement peut être envoyée en cochant la case <b>Envoyer une notification inactive</b>. Si cette case est cochée, la notification sera envoyée à tous les destinataires de l'événement une fois que celui-ci sera devenu inactif. Notez que, si un courriel d'escalade n'a pas été envoyé, la notification inactive ne sera pas envoyée à la liste d'escalade. Seuls les destinataires qui ont reçu une notification active recevront une notification inactive. Ce comportement peut être contourné en cochant la case <b>Annuler les destinataires inactifs</b>, qui permet de définir une liste de destinataires inactifs spécifiques. Cela peut être utile s'il y a des destinataires de notification active qui ne doivent pas recevoir d'autres e-mails (comme un système de billetterie).
+</p>
+
+<h1>Édition des gestionnaires de points de consigne</h1>
+<p>
+  Lorsqu'un événement est soulevé, ce gestionnaire fixera la valeur d'un point de consigne donné. Le <b>cible</b> est le point de settable qui sera défini. En option, le point peut être défini avec la valeur qui a déclenché l'événement, mais cela n'est possible que si l'événement a été déclenché par un détecteur d'événement à point "valeur modifiée" et que le type de données de la cible est le même que celui de la source. Pour que la cible soit définie avec la valeur de la source, cochez la case <b>Utiliser la valeur de la source</b>. Sinon, entrez la valeur à laquelle fixer la cible dans la zone <b>Valeur à fixer</b>.
+</p>
+
+<h1>Gestion des processus d'édition</h1>
+<p>
+  Ce gestionnaire exécutera un processus local, ou une commande shell, éventuellement lorsqu'un événement est déclenché ou désactivé. Les commandes respectives peuvent être n'importe quelle commande shell appropriée à l'hôte. Les commandes doivent être spécifiées comme elles le seraient à partir d'une invite de commande de terminal. Pour les commandes très complexes, vous pouvez trouver pratique d'écrire un script shell, puis d'appeler le script depuis Scada-LTS.
+</p>
+
+<p>
+  Si une procédure ne peut être lancée pour une raison quelconque, un événement système sera déclenché, avec une description de l'échec. De plus, les processus seront interrompus s'ils durent plus de 15 secondes. Les sorties standard non vides du processus seront écrites dans le journal Scada-LTS à un niveau "information". Les sorties d'erreur non vides seront enregistrées dans le journal Mango au niveau "erreur".
+</p>

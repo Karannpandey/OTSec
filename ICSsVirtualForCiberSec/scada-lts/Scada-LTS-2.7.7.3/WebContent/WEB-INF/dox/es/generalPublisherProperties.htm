@@ -1,0 +1,16 @@
+<!--
+    Mango - M2M de código abierto - http://mango.serotoninsoftware.com 
+    Derechos de autor (C) 2006-2011 Serotonin Software Technologies Inc.
+    El autor Matthew Lohbihler    
+    Este programa es software libre: puedes redistribuirlo y/o modificarlo. bajo los términos de la Licencia Pública General de GNU,
+    publicada por la Fundación de Software Libre, ya sea la versión 3 de la licencia, o (su elección) cualquier versión posterior.
+    Este programa se distribuye con la esperanza de que sea útil,  pero SIN NINGUNA GARANTÍA; sin siquiera la garantía implícita de comerciabilidad o idoneidad para un propósito particular.  
+    Vea el Licencia Pública General de GNU para más detalles.
+    Debería haber recibido una copia de la Licencia Pública General de GNU.Al mismo tiempo que este programa.  Si no, véase http://www.gnu.org/licenses/.
+ -->
+<h1>Visión general</h1>
+<p>Los editores pueden ser vistos como lo opuesto a las fuentes de datos. En lugar de recopilar datos en el sistema, los editores los distribuyen. Esto puede ser útil cuando se utiliza el Mango para reunir información de sistemas dispares a fin de modificarla, limpiarla o gestionarla de otra manera, y luego enviarla en un formato común a otros sistemas. De esta manera, el mango no es sólo M2M, sino M2M2M. Los editores pueden incluso utilizarse para enviar datos a otras instancias de Mango, tal vez consolidando los datos de varias instancias sobre el terreno en los datos de gestión de la sede. De hecho, las instancias de Mango pueden utilizar a los editores para controlarse mutuamente de varias maneras.</p>
+<h1>Configuración común del editor</h1>
+<p>Cada editor tiene un <b>Nombre</b> que le permite identificarlo visualmente en las listas. Se recomienda que cada editor tenga un nombre único, pero no es obligatorio. La casilla <b>Activado</b> se utiliza para activar o desactivar el editor.</p>
+<p>Los editores utilizan cachés para asegurar que cada punto actualizado sea entregado en su destino. Si el destino, por cualquier razón, no acepta estas entregas durante un período de tiempo prolongado, este depósito puede llegar a ser muy grande. Las actualizaciones de puntos no entregados nunca se purgan de la caché (a menos que el editor esté desactivado), pero es posible establecer un tamaño de advertencia <b>Cache</b> que dispara una alarma cuando se excede este tamaño. Esta alarma vuelve a la normalidad cuando el tamaño de la caché ya no excede el tamaño de la advertencia, o cuando el editor está desactivado.</p>
+<p>El valor <b>Actualización de eventos</b> determina si se entregan todas las actualizaciones de puntos, o sólo los cambios de puntos.</p>

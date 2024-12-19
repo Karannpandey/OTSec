@@ -1,0 +1,66 @@
+<!--
+    Mango -Open Source M2M - http://mango.serotoninsoftware.com
+    Copyright (C) 2006-2011 Serotonin Software Technologies Inc.
+    @auteur Matthew Lohbihler
+    
+    Ce programme est un logiciel libre : vous pouvez le redistribuer et/ou le modifier
+    aux termes de la licence publique générale GNU telle que publiée par
+    la Free Software Foundation, soit la version 3 de la licence, ou
+    (à votre choix) toute version ultérieure.
+
+    Ce programme est distribué dans l'espoir qu'il sera utile,
+    mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de
+    la qualité marchande ou l'adéquation à un usage particulier.  Voir le
+    Licence publique générale GNU pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la licence publique générale de GNU
+    en même temps que ce programme.  Si ce n'est pas le cas, voir http://www.gnu.org/licenses/.
+ -->
+<h1>Vue d'ensemble</h1>
+<p>La source de données SQL est utilisée pour récupérer et définir des valeurs dans une base de données SQL. Il s'agit d'une source de données d'interrogation qui lira les valeurs en fonction d'une période de mise à jour donnée.</p>
+
+<h1>Connectivité</h1>
+<p>Toute base de données supportée par JDBC est accessible. Un pilote spécifique <a href="http://developers.sun.com/product/jdbc/drivers" target="_blank">JDBC </a>est nécessaire pour se connecter à une base de données particulière, mais de tels pilotes sont facilement disponibles pour la plupart des bases de données, notamment MySQL, MS SQL Server, IBM DB2, Oracle, Sybase, et bien d'autres. Le pilote pour MySQL est inclus avec ce produit. Consultez la documentation relative à votre base de données particulière pour savoir où obtenir le pilote JDBC approprié.</p>
+
+<h1>Configuration</h1>
+<p>Chaque source de données nécessite un <b>Nom</b>, qui peut être n'importe quelle description. Le <b>Période de mise à jour</b> détermine la fréquence de lecture de la base de données.</p>
+<p>
+  Le <b>Nom de la classe de pilote</b> spécifie la classe Java qui implémente l'interface de pilote JDBC dans votre JDBC conducteur. Cette valeur se trouve dans la documentation de votre conducteur. Voici une liste des noms de classes de conducteurs pour la base de données donnée, et n'est fourni qu'à titre de commodité. Il est à noter que la connectivité nécessite généralement l'installation du logiciel pilote sur le serveur Scada-LTS. Si vous rencontrez des problèmes, veuillez consulter la documentation de votre base de données.
+</p>
+<ul>
+  <li><b>MySQL</b> : com.mysql.jdbc.Driver</li>
+  <li><b>Oracle thin driver</b> : oracle.jdbc.driver.OracleDriver</li>
+</ul>
+<p>La <b>Chaîne de connexion</b> dépend à la fois de la base de données que vous utilisez et des spécificités de son installation. La documentation de votre pilote JDBC vous expliquera comment calculer la valeur de votre base de données. Les champs <b>Nom d'utilisateur</b> et <b>Mot de passe</b> fournissent les informations d'identification nécessaires pour que votre base de données accepte les connexions de cette application.</p>
+<p>Votre <b>Sélectionner déclaration</b> doit être une déclaration <a href="http://en.wikipedia.org/wiki/SQL" target="_blank">SQL</a> valide. SQL est censé être un langage d'accès aux données standardisé, mais les différentes bases de données présentent souvent de subtiles différences d'interprétation ou fournissent des extensions de langage. Vous devez donc utiliser la documentation de votre base de données pour vous aider à construire l'instruction SQL à vos fins.</p>
+
+<p>Utilisez la case à cocher <b>Recherche par ligne</b> pour déterminer si la recherche est basée sur une ligne ou une colonne. Comme cela affecte les attributs dans la configuration des points de données, cette sélection ne peut être modifiée que lorsqu'il n'y a pas de points définis pour la source de données. Voir ci-dessous pour plus d'informations sur les requêtes basées sur des lignes ou des colonnes.</p>
+
+<h1>Traitement des requêtes par ligne</h1>
+<p>
+  Les requêtes basées sur des lignes ont des attentes spécifiques quant à la structure de l'ensemble des résultats de la requête, mais permettent de grandes quantités des données similaires à extraire plus facilement qu'avec des requêtes par colonne. L'ensemble des résultats doit avoir les caractéristiques suivantes de la structure.
+</p>
+<ul>
+  <li>Première colonne : l'identificateur de ligne utilisé pour la correspondance avec les points de source de données. Les identificateurs de ligne sont insensibles à la casse. </li>
+  <li>Deuxième colonne : la valeur du point</li>
+  <li>Troisième colonne (optionnelle) : la dérogation de temps pour la valeur du point. Si une troisième colonne n'est pas incluse, le temps par défaut est le temps d'exécution du sondage. Si elle est incluse, la valeur du champ ne peut pas être nulle. </li>
+</ul>
+
+<h1>Traitement des requêtes par colonnes</h1>
+<p>Les requêtes basées sur les colonnes utilisent les noms des colonnes de l'ensemble des résultats pour localiser les valeurs ponctuelles et les dépassements de temps. Il est important de reconnaître que seule la <b>première ligne</b> de l'ensemble de résultats est utilisée dans une requête basée sur des colonnes.</p>
+<p>Il peut y avoir des cas où l'utilisation d'une requête basée sur les lignes est souhaitable, mais pas possible parce que les types de données sont des valeurs trop disparates. Dans de tels cas, il peut être possible de construire l'instruction SQL pour transposer une requête basée sur des lignes en une requête basée sur des colonnes. Une instruction typique pour récupérer des données sur plusieurs lignes peut ressembler à ceci : </p>
+<div><pre style="overflow : auto ; width : 95% ;">sélectionner l'état des relais</pre></div>
+<p> Pour transposer un tel tableau afin de récupérer les valeurs sur une seule ligne, on pourrait procéder comme suit (en supposant 3 relais):</p>
+<div><pre style="overflow : auto ; width : 95% ;">select
+  r1.status as r1status,
+  r2.status as r2status,
+  r3.status as r3status
+from relays r1, relays r2, relays r3
+where r1.relayId = 'relay1'
+  and r2.relayId = 'relay2'
+  and r3.relayId = 'relay3'
+</pre></div>
+<p>Veuillez noter que les exemples ci-dessus sont simplement fournis à titre d'information et de commodité. Votre base de données spécifique peut nécessiter des solutions très différentes.</p>
+
+<h1>Sélectionner le test de déclaration</h1>
+<p>La section <b>Statement test</b> peut être utilisée pour tester à la fois vos valeurs de configuration et votre instruction SQL select. En cliquant sur le bouton <b>Execute</b>, une connexion sera tentée avec votre base de données, et si elle réussit, le SQL sera exécuté. Toute erreur qui se produira sera affichée. Si l'instruction SQL s'exécute avec succès, les résultats seront affichés de manière appropriée selon que l'instruction est basée sur des lignes ou des colonnes. Les requêtes basées sur des colonnes afficheront une ligne pour chaque colonne, en fournissant le nom de la colonne, le type de données de la colonne (entre parenthèses, en utilisant la définition de type JDBC) et la valeur récupérée. Les requêtes basées sur les lignes afficheront le jeu de résultats dans un tableau avec les noms des colonnes et les types de données comme en-têtes, et une ligne de données pour chaque ligne du jeu de résultats (jusqu'à un maximum de 50 lignes).</p>

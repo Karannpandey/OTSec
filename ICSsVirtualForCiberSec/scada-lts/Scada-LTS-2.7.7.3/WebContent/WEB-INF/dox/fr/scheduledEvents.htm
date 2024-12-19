@@ -1,0 +1,36 @@
+<!--
+    Mango -Open Source M2M - http://mango.serotoninsoftware.com
+    Copyright (C) 2006-2011 Serotonin Software Technologies Inc.
+    @auteur Matthew Lohbihler
+    
+    Ce programme est un logiciel libre : vous pouvez le redistribuer et/ou le modifier
+    aux termes de la licence publique générale GNU telle que publiée par
+    la Free Software Foundation, soit la version 3 de la licence, ou
+    (à votre choix) toute version ultérieure.
+
+    Ce programme est distribué dans l'espoir qu'il sera utile,
+    mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de
+    la qualité marchande ou l'adéquation à un usage particulier.  Voir le
+    Licence publique générale GNU pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la licence publique générale de GNU
+    en même temps que ce programme.  Si ce n'est pas le cas, voir http://www.gnu.org/licenses/.
+ -->
+<h1>Vue d'ensemble</h1>
+<p>Les événements programmés sont utilisés pour soulever des événements à des moments précis dans le temps. Ils sont similaires aux détecteurs d'événements (en ce sens qu'ils déclenchent des événements), mais sont basés sur le temps plutôt que sur des points.</p>
+
+<h1>Liste des événements programmés</h1>
+<p> Pour ajouter un nouvel événement programmé, cliquez sur l'icône <img src="images/clock_add.png"/>. Pour modifier un événement programmé existant, cliquez sur la description de l'événement dans la liste "Événements programmés".</p>
+
+<h1>Modification des détails d'un événement prévu</h1>
+<p>Le <b>Alias</b> est une valeur optionnelle qui sera utilisée comme description de l'événement dans tout le système si elle est fournie. Sinon, la description générée automatiquement sera utilisée.</p>
+<p>Le <b>Niveau d'alarme</b> détermine si l'événement programmé déclenche une alarme lorsqu'il est actif, et si oui, la gravité de l'alarme. Consultez la page d'aide générale pour obtenir des informations sur les alarmes.</p>
+<p>Le <b>Type de calendrier</b> détermine la période de base de l'événement. Ces types comprennent les horaires, les jours, etc. Par exemple, un type d'horaire de type horaire se déroulera une fois par heure. Si un horaire qui fonctionne, par exemple, deux fois par jour est nécessaire, il est nécessaire de définir deux événements quotidiens programmés, un pour chaque heure. Il est toutefois possible de définir un modèle de cron qui fonctionne plusieurs fois au cours d'une période. (Voir la documentation "cron pattern" pour plus d'informations.)</p>
+<p>Sélectionner <b>Retour à la normale</b> détermine si l'alarme déclenchée lorsque l'événement est actif est automatiquement retournée à la normale lorsque l'événement devient inactif. Si l'option Retour à la normale est sélectionnée, il est nécessaire de définir le moment où l'événement devient inactif.</p>
+<p>Un événement programmé peut être <b>Désactivé</b> afin qu'il ne se déroule pas. Cela peut être utile si vous ne souhaitez pas supprimer l'événement, mais aussi si vous ne voulez pas qu'il soit activé actuellement.</p>
+
+<h1> Temps actifs/inactifs</h1>
+<p>Les champs disponibles pour la modification des heures actives et inactives dépendent du type d'horaire choisi. La plupart des champs ne doivent pas nécessiter d'autre explication que le fait qu'ils sont exclusivement basés sur le calendrier grégorien. Pour plus d'informations sur les modèles de cron, voir la documentation "Modèle de cron".</p>
+<p> Les temps actifs/inactifs peuvent chevaucher la période donnée. Par exemple, un horaire peut devenir actif à 55 heures et inactif à 5 heures (donc actif pendant 10 minutes). Notez qu'il est possible, bien que peu utile, de définir des schémas de cron qui ne s'activent et ne s'inactivent pas proprement (c'est-à-dire qu'ils peuvent s'activer plusieurs fois avant d'être inactifs et vice versa).</p>
+
+<p> Pour enregistrer un événement programmé, cliquez sur l'icône <img src="images/save.png"/> en haut à droite. Pour supprimer un événement existant, cliquez sur l'icône <img src="images/delete.png"/>.</p>

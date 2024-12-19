@@ -1,0 +1,44 @@
+<!--
+    Mango - Open Source M2M - http://mango.serotoninsoftware.com
+    Copyright (C) 2006-2011 Serotonin Software Technologies Inc.
+    @auteur Matthew Lohbihler
+    
+    Ce programme est un logiciel libre : vous pouvez le redistribuer et/ou le modifier
+    aux termes de la licence publique générale GNU telle que publiée par
+    la Free Software Foundation, soit la version 3 de la licence, ou
+    (à votre choix) toute version ultérieure.
+
+    Ce programme est distribué dans l'espoir qu'il sera utile,
+    mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de
+    la qualité marchande ou l'adéquation à un usage particulier.  Voir le
+    Licence publique générale GNU pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la licence publique générale de GNU
+    en même temps que ce programme.  Si ce n'est pas le cas, voir http://www.gnu.org/licenses/.
+ -->
+<p>
+  Les réseaux en série et IP utilisent les mêmes attributs de point pour localiser les valeurs. Le <b>Identification de l'esclave</b> est l'id avec lequel le nœud Modbus a été configuré ; c'est un nombre compris entre 1 et 240.</p>
+<p>
+  La plage <b>Enregistrer la plage</b> détermine dans laquelle des quatre plages se trouve la valeur. Consultez la documentation de votre équipement pour déterminer ce qui doit être utilisé.</p>
+<ul>
+  <li>
+    L'état de la bobine représente la plage hexadécimale de 0x00000 à 0x0FFFF. Chaque registre contient un seul bit inscriptible et les valeurs dans cette plage sont toujours binaires.</li>
+  <li>
+    L'état des entrées représente la plage hexadécimale de 0x10000 à 0x1FFFF. Chaque registre contient un seul bit en lecture seule. Les valeurs dans cette plage sont toujours Binaires.</li>
+  <li>
+    Le registre d'attente représente la plage hexadécimale de 0x40000 à 0x4FFFF. Chaque registre est constitué de 2 octets (ou "mot"), et est accessible en écriture. Les valeurs dans cette plage peuvent être binaires ou numériques, selon les réglages ultérieurs.</li>
+  <li>
+    Le registre d'entrée représente la plage hexadécimale de 0x30000 à 0x3FFFF. Chaque registre représente 2 octets (ou un "mot"), et est en lecture seule. Les valeurs dans cette plage peuvent être binaires ou numériques, selon les réglages ultérieurs.</li>
+</ul>
+
+<p>
+  Les valeurs de l'état de la bobine et de l'état de l'entrée sont toujours binaires. Cependant, les fournisseurs de Modbus sont souvent très créatifs dans la manière d'utiliser les registres de maintien et d'entrée. Le champ <b>Modbus data type</b> reflète les nombreuses façons dont les données peuvent être encodées. Consultez la documentation de votre équipement Modbus pour déterminer le réglage approprié.
+<p>
+  Les valeurs spécifiques sont situées avec le paramètre <b>Offset</b>. Il s'agit d'une valeur indexée sur 0, ce qui signifie que le comptage commence à partir de 0. Certains fournisseurs Modbus fournissent une documentation indexée sur 1, où le comptage commence à partir de 1. Ainsi, il est parfois nécessaire de soustraire un de l'index documenté pour déterminer le décalage indexé sur 0. Lorsque les registres incluent leur plage, par exemple écrits sous la forme 0x30001, l'indexation à 1 est généralement implicite. Le champ <b>Bit</b> est utilisé lorsque des valeurs binaires sont encodées dans des bits de registre individuels.
+</p>
+<p>
+  Le champ <b>Settable</b> peut être utilisé pour rendre un point qui serait normalement paramétrable (en fonction de sa portée) non paramétrable.
+</p>
+<p>
+  Les champs <b>Multiplicateur</b> et <b>Additif</b> peuvent être utilisés lorsque des conversions de valeurs triviales sont nécessaires. Les valeurs numériques lues à partir du réseau sont calculées comme suit : (valeur brute) * multiplicateur + additif. L'inverse est appliqué lorsqu'une valeur numérique est écrite dans le réseau.
+</p>

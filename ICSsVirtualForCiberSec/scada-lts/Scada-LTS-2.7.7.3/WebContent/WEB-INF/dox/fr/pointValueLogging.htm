@@ -1,0 +1,46 @@
+<!--
+    Mango -Open Source M2M - http://mango.serotoninsoftware.com
+    Copyright (C) 2006-2011 Serotonin Software Technologies Inc.
+    @auteur Matthew Lohbihler
+    
+    Ce programme est un logiciel libre : vous pouvez le redistribuer et/ou le modifier
+    aux termes de la licence publique générale GNU telle que publiée par
+    la Free Software Foundation, soit la version 3 de la licence, ou
+    (à votre choix) toute version ultérieure.
+
+    Ce programme est distribué dans l'espoir qu'il sera utile,
+    mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de
+    la qualité marchande ou l'adéquation à un usage particulier.  Voir le
+    Licence publique générale GNU pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la licence publique générale de GNU
+    en même temps que ce programme.  Si ce n'est pas le cas, voir http://www.gnu.org/licenses/.
+ -->
+<p>Scada-LTS supporte quatre types d'enregistrement de la valeur d'un point</p>
+
+<p><b>Quand la valeur change</b> qui est le paramètre par défaut. La valeur et son occurence de temps sont enregistrés dans la base seulement si la valeur su point change. Ce règlage offre le meilleur rapport qualité (de l'historique)/espace de stockage. Pour les valeurs numériques, une <b>Tolerance</b>, ou "zone morte", peut également être définie; la valeur sera enregistrée si la différence entre la valeur actuelle et la valeur précédente est supérieure ou égale à la tolérance définie.</p>
+
+<p>Le paramètre <b>Toutes les données</b> provoque l'enregistrement dans la base de données de toutes les mises à jour des données. Utilisez ce paramètre uniquement lorsque vos contraintes l'exigent car celà va entrainer rapidement une grande accumulation de données et ralentira très sérieusement les performances.</p>
+
+<p>Le paramètre <b>Ne pas enregistrer</b> empêche tout enregistrement de ce point dans la base. Notez que dans ce cas vous ne pourrez pas appliquer de rendu graphique pour ce point. Utilisez "Ne pas enregistrer" lorsque vous etes certain de ne pas avoir besoin de l'historique des données.</p>
+
+<p>Le paramètre <b>Intervalle</b> le nombre d'accès à la valeur du point sont différents du nombre d'enregistrement dans la base. Utilisez ce paramètre lorsque des données doivent être fréquemment consultées (par exemple pour des détections d'évènement), mais qu'il n'est pas obligatoire de toutes les enregistrer. <b>Type valeur</b> vous permet de choisir la valeur qui ser enregistrée. "Instant" la valeur actuelle du point, les autres options sont des statistiques sur la valeur du point durant la période définie.</p>
+
+<p>Le paramètre <b>au changement de timestamp</b>. Comparable au paramètre <b>Quand la valeur change</b>, mais c'est l'horodatage qui est comparé et non la valeur.</p>
+
+<p><b>Rejeter les valeurs extêmes</b> est utilisé pour les appareils pouvant occasionnellemnt diffusée des valeurs erronées. Lorsque <b>Rejeter les valeurs extêmes</b> est sélectionné, les boites de dialogues  <b>rejeter limite basse</b> et <b>rejeter limite haute</b> sont activées. Toutes les valeurs dèjà enregistrées seront conservées.</p>
+
+<p>
+    The <b>Purge strategy</b> option allows user to choose strategy of data purging. Two types are supported: <b>Period</b> and <b>Values Limit</b>.
+    Le processus de purge se lance chaque jour à 3h 05 heure locale.
+</p>
+
+<p>Le paramètre <b>Period</b> determine la durée d'historisation de la valeur du point dans la base de donnée. Les valeurs peuvent en pratique être conservées aussi longtemps que nécessaire, mais notez que ceci peut engendrer des dégradation de performance du système si l'historique d'un point devient trop important. (En fait, la performance du système dépent en grande partie du matériel hôte). </p>
+
+<p>
+    When the <b>Values Limit</b> type is selected, every time purging is performed for datapoint, number of values set in
+    <b>Values Limit</b> will be left in database for this datapoint. The default value can be set in
+    system settings (<b>Values limit for purge</b>).
+</p>
+
+<p> <b>Taille par défaut du cache</b> est le nombre de valeur qui seront enregistrées en mémoire. Ce paramètre est important quand une méthode autre que "Toutes les données" est choisie. Les valeurs en mémoire seront éventuellement comparées aux valeurs enregistrées dans la base. Une valeur élevée pour la taille du cache peut améliorer les performances du système (car cela peut empêcher les requêtes sur la base), mais la mémoire est alors consommée par le cache, et des problèmes liés au manque de mémoire peuvent survenir. "Vider le cache" n'est pas nécessaire en théorie, mais peut être utile en cas de suppression manuelle de point (en utilisant les fonctions SQL par exemple).</p>

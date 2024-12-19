@@ -1,0 +1,79 @@
+<!--
+    Scada-LTS - Open Source M2M - http://mango.serotoninsoftware.com
+    Copyright (C) 2006-2011 Serotonin Software Technologies Inc.
+    @auteur Matthew Lohbihler
+    
+    Ce programme est un logiciel libre : vous pouvez le redistribuer et/ou le modifier
+    aux termes de la licence publique générale GNU telle que publiée par
+    la Free Software Foundation, soit la version 3 de la licence, ou
+    (à votre choix) toute version ultérieure.
+
+    Ce programme est distribué dans l'espoir qu'il sera utile,
+    mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de
+    la qualité marchande ou l'adéquation à un usage particulier.  Voir le
+    Licence publique générale GNU pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la licence publique générale de GNU
+    en même temps que ce programme.  Si ce n'est pas le cas, voir http://www.gnu.org/licenses/.
+ -->
+<h1>Vue d'ensembles</h1>
+<p>
+  L'objectif d'un détecteur d'événements est de déterminer si la valeur d'un point satisfait à une ou plusieurs conditions connexes et, dans l'affirmative, de devenir "actif" et de déclencher un événement qui peut être traité de manière appropriée. Un point peut avoir un nombre illimité de détecteurs d'événements. La manière dont les événements peuvent être détectés dépend du type de données du point, et donc seuls les détecteurs d'événements qui s'appliquent au type de données du point actuel sont listés dans la sélection <b>Type</b>..
+</p>
+<p>
+  Les détecteurs d'événements peuvent détecter un grand nombre de conditions, mais ne s'appliquent qu'à un seul point. Si des conditions s'appliquant à plusieurs points ou des conditions comprenant des événements programmés sont nécessaires, des détecteurs d'événements composés peuvent être utilisés. Voir la documentation sur les détecteurs d'événements composés.
+</p>
+<p>
+  Un point peut avoir autant de détecteurs que nécessaire, et peut avoir plusieurs détecteurs du même type. (c'est-à-dire plusieurs détecteurs de limite haute ou de limite basse).
+</p>
+<p>
+  Pour ajouter un nouveau détecteur, sélectionnez le <b>Type</b> dans la liste et cliquez sur l'icône <img src="images/bell_add.png"/>. Notez que le bouton "Enregistrer" doit être cliqué pour que le détecteur soit effectivement enregistré avec le point. Pour supprimer un détecteur existant, cliquez sur l'icône <img src="images/bell_delete.png"/> associée au détecteur.
+</p>
+<p>
+  Chaque type de détecteur a un attribut <b>Niveau d'alarme</b>. Cet attribut détermine si le détecteur déclenche une alarme lorsqu'il est actif, et si oui, la gravité de l'alarme. Voir la page d'aide générale pour des informations sur les alarmes.
+</p>
+
+<h1>Limite supérieure</h1>
+<p>
+  Ce détecteur s'applique uniquement aux points numériques. Le <b>Limite haute</b> est la valeur au-dessus de laquelle le détecteur devient actif. Le détecteur peut éventuellement être configuré avec une <b>Durée</b> ; la valeur du point doit rester au-dessus de la limite haute pendant au moins la durée donnée avant que le détecteur ne devienne actif. Les événements déclenchés par ce détecteur reviendront automatiquement à la normale lorsque la condition n'est plus remplie.
+</p>
+
+<h1>Limite inférieure</h1>
+<p>
+  Ce détecteur s'applique uniquement aux points numériques. Le <b>Limite inférieure</b> est la valeur en dessous de laquelle le détecteur devient actif. Le détecteur peut éventuellement être configuré avec une <b>Durée</b> ; la valeur du point doit rester en dessous de la limite inférieure pendant au moins la durée donnée avant que le détecteur ne devienne actif. Les événements déclenchés par ce détecteur reviendront automatiquement à la normale lorsque la condition n'est plus remplie.
+</p>
+
+<h1>Change</h1>
+<p>
+  Ce détecteur s'applique à tous les types de données. Il déclenche un événement chaque fois que la valeur du point change. Les événements déclenchés par ce détecteur ne reviennent pas automatiquement à la normale.
+</p>
+
+<h1>Pas de changement</h1>
+<p>
+  Ce détecteur s'applique à tous les types de données. Il déclenche un événement lorsque la valeur n'a pas changé dans les limites de la <b>Durée</b> donnée. Cela peut être utile pour détecter un dysfonctionnement de l'équipement. Les événements déclenchés par ce détecteur reviendront automatiquement à la normale lorsque la condition n'est plus remplie.
+</p>
+
+<h1>Pas de mise à jour</h1>
+<p>
+  Ce détecteur s'applique à tous les types de données. Il déclenche un événement lorsque la valeur n'a pas été mise à jour dans la période <b>Durée</b> donnée. (Une modification de la valeur ponctuelle exige que la nouvelle valeur ponctuelle soit différente de la précédente. Une mise à jour de la valeur ponctuelle ne nécessite que le temps de changement de la valeur ponctuelle ; la valeur elle-même peut rester la même). Cela peut être utile pour détecter un dysfonctionnement de l'équipement. Les événements déclenchés par ce détecteur reviendront automatiquement à la normale lorsque la condition n'est plus remplie.
+</p>
+
+<h1>État</h1>
+<p>
+  Ce détecteur s'applique aux points binaires, multi-états et alphanumériques. Il devient actif dès que le point entre dans l'état <b> donné </b>. Le détecteur peut éventuellement être configuré avec une <b>Durée</b> ; le point doit rester dans l'état donné pendant au moins la durée donnée avant que le détecteur ne devienne actif. Les événements déclenchés par ce détecteur reviendront automatiquement à la normale lorsque la condition n'est plus remplie.
+</p>
+
+<h1>Ce détecteur s'applique aux points binaires, multi-états et alphanumériques. Il devient actif dès que le point entre dans l'état <b> donné </b>. Le détecteur peut éventuellement être configuré avec une <b>Durée</b> ; le point doit rester dans l'état donné pendant au moins la durée donnée avant que le détecteur ne devienne actif. Les événements déclenchés par ce détecteur reviendront automatiquement à la normale lorsque la condition n'est plus remplie</h1>
+<p>
+  Ce détecteur s'applique uniquement aux points binaires, multi-états et alphanumériques. Il devient actif lorsque la valeur du point change au moins <b>Compte de changement</b> fois dans la période <b>Durée</b> donnée. Les événements déclenchés par ce détecteur reviennent automatiquement à la normale lorsque la condition n'est plus remplie.
+</p>
+
+<h1>CUSUM positif</h1>
+<p>
+  Ce détecteur s'applique uniquement aux points numériques. Le <b>Limite positive</b> est le CUSUM au-dessus duquel le détecteur devient actif, et le <b>Poids</b> est la valeur de poids constant à utiliser pour le calcul du CUSUM. Le détecteur peut éventuellement être configuré avec une <b>Durée</b> ; le CUSUM doit rester au-dessus de la limite pendant au moins la durée donnée avant que le détecteur ne devienne actif. Les événements déclenchés par ce détecteur reviendront automatiquement à la normale lorsque la condition n'est plus remplie.
+</p>
+
+<h1>CUSUM Négatif</h1>
+<p>
+  Ce détecteur s'applique uniquement aux points numériques. Le <b>Limite négative</b> est le CUSUM en dessous duquel le détecteur devient actif, et le <b>Poids</b> est la valeur de poids constant à utiliser pour le calcul du CUSUM. Le détecteur peut éventuellement être configuré avec une <b>Durée</b> ; le CUSUM doit rester en dessous de la limite pendant au moins la durée donnée avant que le détecteur ne devienne actif. Les événements déclenchés par ce détecteur reviendront automatiquement à la normale lorsque la condition n'est plus remplie.
+</p>

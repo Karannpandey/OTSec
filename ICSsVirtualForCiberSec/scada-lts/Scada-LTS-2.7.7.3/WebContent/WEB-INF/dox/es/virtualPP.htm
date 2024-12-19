@@ -1,0 +1,50 @@
+<!--
+    Mango- M2M de código abierto - http://mango.serotoninsoftware.com 
+    Derechos de autor (C) 2006-2011 Serotonin Software Technologies Inc.
+    El autor Matthew Lohbihler    
+    Este programa es software libre: puedes redistribuirlo y/o modificarlo. bajo los términos de la Licencia Pública General de GNU,
+    publicada por la Fundación de Software Libre, ya sea la versión 3 de la licencia, o (su elección) cualquier versión posterior.
+    Este programa se distribuye con la esperanza de que sea útil,  pero SIN NINGUNA GARANTÍA; sin siquiera la garantía implícita de comerciabilidad o idoneidad para un propósito particular.  
+    Vea el Licencia Pública General de GNU para más detalles.
+    Debería haber recibido una copia de la Licencia Pública General de GNU.Al mismo tiempo que este programa.  Si no, véase http://www.gnu.org/licenses/.
+ -->
+<h1>Visión general</h1>
+<p>Los puntos dentro de una fuente de datos virtual generan datos sin ninguna influencia externa, ya sea de forma aleatoria o determinista. Se puede crear cualquier tipo de datos soportados y se dispone de varias opciones para cambiar los valores.</p>
+
+<p>Los atributos comunes a todos los puntos virtuales son:</p>
+<ul>
+  <li><b>Nombre</b> : el nombre del punto que se utilizará como identificador en las listas de puntos.</li>
+  <li><b>Ajustar la tabla</b> : si el punto puede ser ajustado manualmente o no.</li>
+  <li><b>Tipo de datos</b> : el tipo de datos del punto. Véase más abajo para más detalles.</li>
+  <li><b>Tipo de cambio</b> : el algoritmo que determina cómo cambia el punto. Véase más abajo para más detalles.</li>
+  <li><b>Valor inicial</b> : el estado inicial del punto donde comienza la fuente de datos.</li>
+</ul>
+
+<h1>Puntos binarios</h1>
+<p>Los puntos binarios están en sólo uno de dos estados posibles: encendido o apagado, verdadero o falso, sí o no, etc. Hay tres tipos de cambios disponibles:</p>
+<ul>
+  <li><b>Alternativa</b> : el punto alterna en cada paso entre sus dos posibles estados</li>
+  <li><b>No hay cambios.</b> : la puntada no cambia automáticamente (útil para puntadas que se ajustan manualmente)</li>
+  <li><b>Al azar</b> : el punto cambia de estado aleatoriamente (pero sólo cambiará en tiempo de ejecución)</li>
+</ul>
+
+<h1>Puntos multiestatales</h1>
+<p>Los puntos de sutura en varios estados se encuentran en uno de varios estados distintos, como activado, desactivado o desactivado. Para todos los tipos de cambios, los posibles valores del punto deben ser definidos usando el control <b>Valores</b>. Hay tres tipos de cambio disponibles:</p>
+<ul>
+  <li><b>Incremento</b> : el punto pasa a través de cada posible estado a su vez. Si <b>Rolling</b> está activado, el punto volverá al principio una vez que haya alcanzado el último valor. Si Roll está apagado, el punto pasará por todos los puntos en orden inverso antes de volver al principio.</li>
+  <li><b>No change</b> : la puntada no cambia automáticamente (útil para las puntadas que se ajustan manualmente)</li>
+  <li><b>Al azar</b> : el punto cambia de estado aleatoriamente (pero sólo cambiará en tiempo de ejecución)</li>
+</ul>
+
+<h1> Puntos numéricos</h1>
+<p>Los puntos digitales representan valores analógicos, y pueden ser cualquier número real que puede ser representado como un punto flotante de 64 bits. Hay cinco tipos de cambio disponibles:</p>
+<ul>
+  <li><b>Brownian</b> : movimiento Browniano generado al azar, lo que significa que el punto cambiará un diferencial generado al azar de su valor anterior. Los límites inferior y superior del valor pueden definirse con <b>Mínimo</b> y <b>Máximo</b> respectivamente. El valor <b>Máximo</b> determina el máximo diferencial generado aleatoriamente que puede ser generado.</li>
+  <li><b>Incremento</b>: el punto cambia por la cantidad <b> cambia</b> cada vez. El valor de Cambio puede ser negativo. Los límites inferior y superior del valor pueden establecerse con <b>Mínimo</b> y <b>Máximo</b> respectivamente. Si <b>Roll</b> se activa, el punto volverá al límite una vez que haya superado el límite opuesto. Si se desactiva Roll, el punto utilizará el valor negativo de Cambio una vez que haya superado un límite.</li>
+  <li><b>No hay cambios.</b> : la puntada no cambia automáticamente (útil para puntadas que se ajustan manualmente)</li>
+  <li><b>Al alzar</b> : el punto tomará al azar (distribuido uniformemente) un valor entre los límites mínimo y máximo (inclusive).</li>
+  <li><b>Atractor</b> : el punto se aproximará asintóticamente al valor de otro punto numérico del sistema. El valor <b>Máximo cambio</b> determina el tamaño del salto al valor objetivo. El valor <b>Volatilidad</b> puede ser usado para representar las fluctuaciones aleatorias del punto.</li>
+</ul>
+
+<h1> Puntos alfanuméricos</h1>
+<p>Los puntos alfanuméricos representan cadenas de caracteres y, por lo tanto, no están sujetos a cambios significativos a través del algoritmo. Por lo tanto, el único tipo de cambio disponible es <b>Sin cambio</b>.</p>

@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Mango - Open Source M2M - http://mango.serotoninsoftware.com
+    Copyright (C) 2006-2011 Serotonin Software Technologies Inc.
+    @author Matthew Lohbihler
+    
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see http://www.gnu.org/licenses/.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+        http://www.springframework.org/schema/cache
+        http://www.springframework.org/schema/cache/spring-cache.xsd
+">
+
+  <!-- DWR -->
+  <bean id="CompoundEventsDwr" class="com.serotonin.mango.web.dwr.CompoundEventsDwr"/>
+  <bean id="CustomViewDwr" class="com.serotonin.mango.web.dwr.CustomViewDwr"/>
+  <bean id="DataPointDetailsDwr" class="com.serotonin.mango.web.dwr.DataPointDetailsDwr"/>
+  <bean id="DataPointEditDwr" class="com.serotonin.mango.web.dwr.DataPointEditDwr"/>
+  <bean id="DataSourceEditDwr" class="com.serotonin.mango.web.dwr.DataSourceEditDwr"/>
+  <bean id="DataSourceListDwr" class="com.serotonin.mango.web.dwr.DataSourceListDwr"/>
+  <bean id="EmportDwr" class="com.serotonin.mango.web.dwr.EmportDwr"/>
+  <bean id="EventHandlersDwr" class="com.serotonin.mango.web.dwr.EventHandlersDwr"/>
+  <bean id="EventsDwr" class="com.serotonin.mango.web.dwr.EventsDwr"/>
+  <bean id="MailingListsDwr" class="com.serotonin.mango.web.dwr.MailingListsDwr"/>
+  <bean id="MaintenanceEventsDwr" class="com.serotonin.mango.web.dwr.MaintenanceEventsDwr"/>
+  <bean id="MiscDwr" class="com.serotonin.mango.web.dwr.MiscDwr"/>
+  <bean id="PointHierarchyDwr" class="com.serotonin.mango.web.dwr.PointHierarchyDwr"/>
+  <bean id="PointLinksDwr" class="com.serotonin.mango.web.dwr.PointLinksDwr"/>
+  <bean id="PublisherEditDwr" class="com.serotonin.mango.web.dwr.PublisherEditDwr"/>
+  <bean id="PublisherListDwr" class="com.serotonin.mango.web.dwr.PublisherListDwr"/>
+  <bean id="ReportsDwr" class="com.serotonin.mango.web.dwr.ReportsDwr"/>
+  <bean id="ScheduledEventsDwr" class="com.serotonin.mango.web.dwr.ScheduledEventsDwr"/>
+  <bean id="SystemSettingsDwr" class="com.serotonin.mango.web.dwr.SystemSettingsDwr"/>
+  <bean id="UsersDwr" class="com.serotonin.mango.web.dwr.UsersDwr"/>
+  <bean id="ViewDwr" class="com.serotonin.mango.web.dwr.ViewDwr"/>
+  <bean id="WatchListDwr" class="com.serotonin.mango.web.dwr.WatchListDwr"/>
+  <bean id="ScriptsDwr" class="br.org.scadabr.web.dwr.ScriptsDwr"/>
+  <bean id="UsersProfilesDwr" class="br.org.scadabr.web.dwr.UsersProfilesDwr"/>
+
+  <!-- i18n -->
+  <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+  	<property name="defaultLocale" value="en"/>
+  </bean>
+
+  <bean id="messageSource" class="com.serotonin.web.i18n.Utf8ResourceBundleMessageSource">
+    <property name="basename"><value>messages</value></property>
+  </bean>
+
+  <cache:annotation-driven cache-manager="ehCacheManager" />
+
+  <bean id="ehCacheManager" class="org.springframework.cache.jcache.JCacheCacheManager">
+    <property name="cacheManager" ref="ehcache"/>
+  </bean>
+
+  <bean id="ehcache" class="org.springframework.cache.jcache.JCacheManagerFactoryBean">
+    <property name="cacheManagerUri" value="classpath:/ehcache.xml"/>
+  </bean>
+
+  <bean id="applicationBeans" class="org.scada_lts.web.beans.GetApplicationBeans"/>
+
+  <bean id="usersProfileDAO" class="org.scada_lts.dao.UsersProfileDAO" />
+  <bean id="dataPointUserDAO" class="org.scada_lts.dao.DataPointUserDAO"/>
+  <bean id="viewDAO" class="org.scada_lts.dao.ViewDAO"/>
+  <bean id="watchListDAO" class="org.scada_lts.dao.watchlist.WatchListDAO"/>
+  <bean id="dataSourceDAO" class="org.scada_lts.dao.DataSourceDAO"/>
+  <bean id="userDAO" class="org.scada_lts.dao.UserDAO"/>
+
+  <bean id="watchListGetShareUsers" class="org.scada_lts.permissions.service.WatchListGetShareUsers">
+    <constructor-arg ref="watchListDAO"/>
+  </bean>
+
+  <bean id="viewGetShareUsers" class="org.scada_lts.permissions.service.ViewGetShareUsers">
+    <constructor-arg ref="viewDAO"/>
+  </bean>
+
+  <bean id="dataPointUserPermissionsService" class="org.scada_lts.permissions.service.DataPointUserPermissionsService">
+    <constructor-arg ref="dataPointUserDAO"/>
+  </bean>
+
+  <bean id="dataSourceUserPermissionsService" class="org.scada_lts.permissions.service.DataSourceUserPermissionsService">
+    <constructor-arg ref="dataSourceDAO"/>
+  </bean>
+
+  <bean id="watchListUserPermissionsService" class="org.scada_lts.permissions.service.WatchListUserPermissionsService">
+    <constructor-arg ref="watchListDAO"/>
+  </bean>
+
+  <!-- User Cachable -->
+
+  <bean id="watchListGetShareUsersWithCache" class="org.scada_lts.permissions.cache.WatchListGetShareUsersWithCache">
+    <constructor-arg ref="watchListGetShareUsers"/>
+  </bean>
+
+  <bean id="userCache" class="org.scada_lts.dao.cache.UserCache">
+    <constructor-arg ref="userDAO"/>
+  </bean>
+
+  <bean id="viewCache" class="org.scada_lts.dao.cache.ViewCache">
+    <constructor-arg ref="viewDAO"/>
+  </bean>
+
+  <bean id="usersProfileCache" class="org.scada_lts.dao.cache.UsersProfileCache">
+    <constructor-arg ref="usersProfileDAO"/>
+  </bean>
+
+  <bean id="userDaoWithCache" class="org.scada_lts.dao.cache.UserDaoWithCache">
+    <constructor-arg ref="userCache"/>
+  </bean>
+
+  <bean id="viewDaoWithCache" class="org.scada_lts.dao.cache.ViewDaoWithCache">
+    <constructor-arg ref="viewCache"/>
+  </bean>
+
+  <bean id="usersProfileDaoWithCache" class="org.scada_lts.dao.cache.UsersProfileDaoWithCache">
+    <constructor-arg ref="usersProfileCache"/>
+    <constructor-arg ref="usersProfileDAO"/>
+  </bean>
+
+  <bean id="dataSourceUserPermissionsServiceWithCache" class="org.scada_lts.permissions.cache.DataSourceUserPermissionsServiceWithCache">
+    <constructor-arg ref="dataSourceUserPermissionsService" />
+  </bean>
+
+  <bean id="dataPointUserPermissionsServiceWithCache" class="org.scada_lts.permissions.cache.DataPointUserPermissionsServiceWithCache">
+    <constructor-arg ref="dataPointUserPermissionsService"/>
+  </bean>
+
+  <bean id="watchListUserPermissionsServiceWithCache" class="org.scada_lts.permissions.cache.WatchListUserPermissionsServiceWithCache">
+    <constructor-arg ref="watchListUserPermissionsService"/>
+  </bean>
+  <!-- -->
+
+  <!-- Highest Alarm Level -->
+  <bean id="highestAlarmLevelDAO" class="org.scada_lts.dao.HighestAlarmLevelDAO" />
+
+  <bean id="highestAlarmLevelCache" class="org.scada_lts.dao.cache.HighestAlarmLevelCache">
+    <constructor-arg ref="highestAlarmLevelDAO"/>
+  </bean>
+
+  <bean id="highestAlarmLevelService" class="org.scada_lts.service.HighestAlarmLevelService">
+    <constructor-arg ref="highestAlarmLevelDAO"/>
+  </bean>
+
+  <bean id="highestAlarmLevelServiceWithCache" class="org.scada_lts.service.HighestAlarmLevelServiceWithCache">
+    <constructor-arg ref="highestAlarmLevelCache"/>
+    <constructor-arg ref="highestAlarmLevelDAO"/>
+    <constructor-arg ref="resetHighestAlarmLevelScheduler"/>
+  </bean>
+
+  <bean id="sessionRepository" class="org.springframework.session.MapSessionRepository"/>
+  <!-- -->
+
+  <!-- Point Hierarchy -->
+  <bean id="dataPointDAO" class="org.scada_lts.dao.DataPointDAO"/>
+  <bean id="hierarchyDAO" class="org.scada_lts.dao.HierarchyDAO"/>
+  <bean id="pointHierarchyXidDAO" class="org.scada_lts.dao.pointhierarchy.PointHierarchyXidDAO" />
+  <bean id="pointHierarchyDAO" class="org.scada_lts.dao.pointhierarchy.PointHierarchyDAO" />
+
+  <bean id="pointHierarchyXidService" class="org.scada_lts.service.pointhierarchy.PointHierarchyXidService" >
+    <constructor-arg ref="pointHierarchyXidDAO"/>
+    <constructor-arg ref="dataPointDAO"/>
+    <constructor-arg ref="hierarchyDAO"/>
+  </bean>
+
+  <bean id="pointHierarchyService" class="org.scada_lts.service.pointhierarchy.PointHierarchyService"  >
+    <constructor-arg ref="pointHierarchyXidDAO"/>
+    <constructor-arg ref="dataPointDAO"/>
+    <constructor-arg ref="hierarchyDAO"/>
+  </bean>
+  <!-- -->
+
+  <!-- UserComment Cachable -->
+  <bean id="userCommentDAO" class="org.scada_lts.dao.UserCommentDAO" />
+
+  <bean id="userCommentCache" class="org.scada_lts.dao.cache.UserCommentCache">
+    <constructor-arg ref="userCommentDAO"/>
+  </bean>
+
+  <bean id="userCommentDaoWithCache" class="org.scada_lts.dao.cache.UserCommentDaoWithCache" >
+    <constructor-arg ref="userCommentCache"/>
+    <constructor-arg ref="userCommentDAO"/>
+  </bean>
+
+  <bean id="userCommentService" class="org.scada_lts.mango.service.UserCommentService">
+    <constructor-arg ref="userCommentDAO"/>
+  </bean>
+
+  <bean id="userCommentServiceWithCache" class="org.scada_lts.mango.service.UserCommentService">
+    <constructor-arg ref="userCommentDaoWithCache"/>
+  </bean>
+  <!-- -->
+
+  <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="locations" value="classpath:env.properties"/>
+  </bean>
+
+  <bean id="databaseAccess" class="com.serotonin.mango.db.DatabaseAccess" factory-method="createDatabaseAccess" />
+
+  <bean id="databaseSource" factory-bean="databaseAccess" factory-method="getDataSource" />
+
+  <bean id="mangoContextListener" class="com.serotonin.mango.MangoContextListener" />
+
+  <bean id="alarmsDAO" class="org.scada_lts.dao.alarms.PlcAlarmsDAO" />
+
+  <!-- Point Event Detectors Cache -->
+  <bean id="pointEventDetectorDAO" class="org.scada_lts.dao.PointEventDetectorDAO" />
+
+  <bean id="pointEventDetectorCache" class="org.scada_lts.dao.cache.PointEventDetectorCache">
+    <constructor-arg ref="pointEventDetectorDAO"/>
+  </bean>
+
+  <bean id="pointEventDetectorDaoWithCache" class="org.scada_lts.dao.cache.PointEventDetectorDaoWithCache" >
+    <constructor-arg ref="pointEventDetectorCache"/>
+  </bean>
+  <!-- -->
+
+  <bean id="loggedUsers" class="org.scada_lts.login.LoggedUsers" />
+
+  <!-- Quartz -->
+
+  <bean id="schedulerFactory" class="org.quartz.impl.StdSchedulerFactory"/>
+  <bean id="scheduler" class="org.quartz.Scheduler" factory-method="getScheduler" factory-bean="schedulerFactory"/>
+
+  <bean id="scadaScheduler" class="org.scada_lts.quartz.ScadaScheduler" destroy-method="destroy" init-method="init">
+    <constructor-arg ref="scheduler"/>
+  </bean>
+
+  <!-- Quartz HighestAlarmLevel -->
+
+  <bean id="resetHighestAlarmLevelTrigger" class="org.quartz.CronTrigger">
+    <constructor-arg value="Quartz - trigger-ResetCacheHighestAlarmLevel"/>
+    <constructor-arg value="DEFAULT"/>
+  </bean>
+
+  <bean id="resetHighestAlarmLevelJob" class="org.quartz.JobDetail">
+    <constructor-arg value="Quartz - job-ResetCacheHighestAlarmLevel"/>
+    <constructor-arg value="DEFAULT"/>
+    <constructor-arg value="org.scada_lts.quartz.ResetCacheHighestAlarmLevel" type="java.lang.Class"/>
+  </bean>
+
+  <bean id="resetHighestAlarmLevelScheduler" class="org.scada_lts.quartz.CronTriggerScheduler" destroy-method="stop">
+    <constructor-arg ref="scadaScheduler"/>
+    <constructor-arg ref="resetHighestAlarmLevelTrigger"/>
+    <constructor-arg ref="resetHighestAlarmLevelJob"/>
+  </bean>
+
+  <!-- Quartz EverySecond -->
+
+  <bean id="everySecondTrigger" class="org.quartz.CronTrigger">
+    <constructor-arg value="Quartz - trigger-EverySecondTrigger"/>
+    <constructor-arg value="DEFAULT"/>
+    <constructor-arg value="0/1 * * ? * *"/>
+  </bean>
+
+  <bean id="everySecondJobDetail" class="org.quartz.JobDetail">
+    <constructor-arg value="Quartz - job-EverySecond"/>
+    <constructor-arg value="DEFAULT"/>
+    <constructor-arg value="org.scada_lts.quartz.EverySecond" type="java.lang.Class"/>
+  </bean>
+
+  <bean id="everySecondScheduler" class="org.scada_lts.quartz.CronTriggerScheduler" destroy-method="stop">
+    <constructor-arg ref="scadaScheduler"/>
+    <constructor-arg ref="everySecondTrigger"/>
+    <constructor-arg ref="everySecondJobDetail"/>
+  </bean>
+
+  <!-- Quartz DataSourcePointsCache -->
+
+  <bean id="updateDataSourcesPointsTrigger" class="org.quartz.CronTrigger">
+    <constructor-arg value="Quartz - trigger-DataSourcePointsCache"/>
+    <constructor-arg value="DEFAULT"/>
+  </bean>
+
+  <bean id="updateDataSourcesPointsJobDetail" class="org.quartz.JobDetail">
+    <constructor-arg value="Quartz - job-DataSourcePointsCache"/>
+    <constructor-arg value="DEFAULT"/>
+    <constructor-arg value="org.scada_lts.cache.UpdateDataSourcesPoints" type="java.lang.Class"/>
+  </bean>
+
+  <bean id="updateDataSourcesPointsScheduler" class="org.scada_lts.quartz.CronTriggerScheduler" destroy-method="stop">
+    <constructor-arg ref="scadaScheduler"/>
+    <constructor-arg ref="updateDataSourcesPointsTrigger"/>
+    <constructor-arg ref="updateDataSourcesPointsJobDetail"/>
+  </bean>
+
+  <!-- Quartz UpdatePointHierarchyCache -->
+
+  <bean id="updatePointHierarchyTrigger" class="org.quartz.CronTrigger">
+    <constructor-arg value="Quartz - trigger-UpdatePointHierarchyCache"/>
+    <constructor-arg value="DEFAULT"/>
+  </bean>
+
+  <bean id="updatePointHierarchyJobDetail" class="org.quartz.JobDetail">
+    <constructor-arg value="Quartz - job-UpdatePointHierarchyCache"/>
+    <constructor-arg value="DEFAULT"/>
+    <constructor-arg value="org.scada_lts.quartz.UpdatePointHierarchyCache" type="java.lang.Class"/>
+  </bean>
+
+  <bean id="updatePointHierarchyScheduler" class="org.scada_lts.quartz.CronTriggerScheduler" destroy-method="stop">
+    <constructor-arg ref="scadaScheduler"/>
+    <constructor-arg ref="updatePointHierarchyTrigger"/>
+    <constructor-arg ref="updatePointHierarchyJobDetail"/>
+  </bean>
+
+  <!-- Quartz UpdatePendingEvents -->
+
+  <bean id="updatePendingEventsTrigger" class="org.quartz.SimpleTrigger">
+    <constructor-arg value="Quartz - trigger-UpdatePendingEvents"/>
+    <constructor-arg value="DEFAULT"/>
+  </bean>
+
+  <bean id="updatePendingEventsJobDetail" class="org.quartz.JobDetail">
+    <constructor-arg value="Quartz - job-UpdatePendingEvents"/>
+    <constructor-arg value="DEFAULT"/>
+    <constructor-arg value="org.scada_lts.quartz.UpdatePointHierarchyCache" type="java.lang.Class"/>
+  </bean>
+
+  <bean id="updatePendingEventsScheduler" class="org.scada_lts.quartz.SimpleTriggerScheduler" destroy-method="stop">
+    <constructor-arg ref="scadaScheduler"/>
+    <constructor-arg ref="updatePendingEventsTrigger"/>
+    <constructor-arg ref="updatePendingEventsJobDetail"/>
+  </bean>
+</beans>

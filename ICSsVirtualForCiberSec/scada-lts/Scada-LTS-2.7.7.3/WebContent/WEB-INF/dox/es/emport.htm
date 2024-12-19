@@ -1,0 +1,49 @@
+<!--
+    Scada-LTS - M2M de código abierto - http://mango.serotoninsoftware.com 
+    Derechos de autor (C) 2006-2011 Serotonin Software Technologies Inc.
+    El autor Matthew Lohbihler    
+    Este programa es software libre: puedes redistribuirlo y/o modificarlo. bajo los términos de la Licencia Pública General de GNU,
+    publicada por la Fundación de Software Libre, ya sea la versión 3 de la licencia, o (su elección) cualquier versión posterior.
+    Este programa se distribuye con la esperanza de que sea útil,  pero SIN NINGUNA GARANTÍA; sin siquiera la garantía implícita de comerciabilidad o idoneidad para un propósito particular.  
+    Vea el Licencia Pública General de GNU para más detalles.
+    Debería haber recibido una copia de la Licencia Pública General de GNU.Al mismo tiempo que este programa.  Si no, véase http://www.gnu.org/licenses/.
+ -->
+<h1>Visión general</h1>
+<p>
+  Esta característica puede utilizarse para exportar e importar varios aspectos de su configuración de Mango. Esta capacidad proporciona varias ventajas:</p>
+<dl>
+  <dt><b>Respaldar y restaurar</b></dt>
+  <dd> Exporte toda su configuración y guarde el texto resultante en un lugar seguro. Si tu instancia de Mango sufre un fallo catastrófico, puedes crear una nueva instancia e importar tu archivo de configuración para recrear rápidamente la instancia.</dd>
+  <dt><b>Crear y mantener instancias idénticas</b></dt>
+  <dd> Exporta los elementos de su configuración que son comunes a todas sus instancias. Para crear una nueva instancia similar, importa la configuración común y luego modifica la configuración si es necesario. Para hacer cambios en todas tus instancias, simplemente edita el archivo de configuración e impórtalo en todas tus instancias. También se puede modificar una instancia, exportar y luego importar el resultado en todas las demás instancias.</dd>
+  <dt><b>Mantener configuraciones grandes y complejas</b></dt>
+  <dd> Aunque ampliamente elogiada por su estética y facilidad de uso, la interfaz de usuario de Mango no fue diseñada para manejar configuraciones extremadamente grandes y complejas. En tales casos, los archivos de exportación pueden utilizarse como una forma alternativa de gestionar la configuración. Haga sus cambios directamente en el archivo de configuración y luego impórtelos en sus ejemplos.</dd>
+</dl>
+
+<h1>Exportación</h1>
+<p> Puede elegir exportar toda su configuración marcando cada opción en <b>Seleccione lo que quiera exportar</b>. También puede elegir exportar sólo partes de su configuración. El resultado de la operación de exportación se mostrará en el cuadro de texto <b>Datos</b>, desde el que se puede copiar y pegar en otro lugar, o hacer cambios directos.
+</p>
+
+<h1>Importación</h1>
+<p> Así como los usuarios pueden elegir lo que quieren exportar, usted también puede elegir importar sólo una pequeña parte de su configuración completa. En la mayoría de los casos, la información excluida de su archivo de importación permanecerá sin cambios. Por ejemplo, si sus datos de importación no incluyen el atributo "Detectores de eventos" en un punto de datos, la lista de detectores de eventos para ese punto permanecerá sin cambios. Sin embargo, si se incluye el atributo, la lista será sustituida por el contenido del atributo.</p>
+<p> En general, cualquier objeto Mango que tenga un identificador único puede ser creado y actualizado, pero no eliminado. Aquellos objetos que son soportados por esta función tendrán y <b>Export Id, o XID</b>. Este atributo está diseñado específicamente para proporcionar una identificación única de los objetos entre las instancias de Mango. Es similar a una clave primaria generada por una base de datos, pero las claves primarias no pueden ser mapeadas a través de múltiples instancias de Mango. Cuando un objeto, como una fuente de datos, se crea utilizando la interfaz de Mango, recibe automáticamente un XID único para cada instancia. Aunque no se puede garantizar que sea único para todas sus instancias de Mango, hay una alta probabilidad de que lo sea. Puedes cambiar el XID a cualquier valor de 50 caracteres siempre y cuando el valor siga siendo único para ese tipo de objeto en la instancia.
+</p>
+<p>
+  Las importaciones pueden fallar por muchas razones:
+</p>
+<ul>
+  <li>
+    Si el formato de su JSON es incorrecto, toda la importación fallará y recibirá un mensaje de error que describe la causa y la ubicación del probable problema en sus datos.
+  </li>
+  <li>
+    Si un elemento de datos requerido falta o no es válido, la importación del objeto asociado fallará, pero otros objetos todavía pueden ser importados con éxito. Se le proporcionará una lista de todos los objetos que se importaron con éxito, así como una lista de mensajes de error descriptivos de los fallos.
+  </li>
+</ul>
+
+<h1>Formato</h1>
+<p>
+  El servicio de importación y exportación utiliza el formato JSON (véase <a href="http://www.json.org/" target="_blank">http://www.json.org/</a> para más información) como formato de datos para los archivos de configuración. El formato JSON es un formato de datos muy similar que es fácil de entender y usar. Se eligió JSON en lugar del formato XML más común porque ofrece una mejor correspondencia con la estructura real de los objetos Mango, y también es más compacto.
+</p>
+<p>
+  Mango creará automáticamente "bonitos" archivos de exportación JSON, es decir, dará formato a la salida con los saltos de línea y las sangrías apropiadas. La cantidad de sangría puede ser controlada con el atributo <b>Nivel de sangría</b>.
+</p>

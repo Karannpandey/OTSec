@@ -1,0 +1,27 @@
+<!--
+    Mango - Open Source M2M - http://mango.serotoninsoftware.com
+    Copyright (C) 2006-2011 Serotonin Software Technologies Inc.
+    @auteur Matthew Lohbihler
+    
+    Ce programme est un logiciel libre : vous pouvez le redistribuer et/ou le modifier
+    aux termes de la licence publique générale GNU telle que publiée par
+    la Free Software Foundation, soit la version 3 de la licence, ou
+    (à votre choix) toute version ultérieure.
+
+    Ce programme est distribué dans l'espoir qu'il sera utile,
+    mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de
+    la qualité marchande ou l'adéquation à un usage particulier.  Voir le
+    Licence publique générale GNU pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la licence publique générale de GNU
+    en même temps que ce programme.  Si ce n'est pas le cas, voir http://www.gnu.org/licenses/.
+ -->
+<h1>Vue d'ensemble</h1>
+<p>La source de données 1-wire est utilisée pour recueillir des données à partir d'un réseau local 1-wire, accessible via une communication RS232 ou RS485 (nécessite un adaptateur). Il s'agit d'une source de données d'interrogation.</p>
+<p>La source de données est capable de tolérer des reconfigurations physiques du réseau. Lorsque des modifications de la topographie d'un réseau sont détectées, un nouveau balayage automatique est effectué. Si tous les points sont toujours localisés après le balayage, aucun événement n'est soulevé.</p>
+
+<h1>Configuration</h1>
+<p>Chaque source de données nécessite un <b>Nom</b>, qui peut être n'importe quelle description. La sélection <b>Port</b> fournit une liste de tous les ports série disponibles sur le matériel hôte. Cela correspond au port dans lequel le 1-wired est connecté. La sélection <b>Période de mise à jour</b> détermine la fréquence à laquelle le réseau est interrogé pour des données.</p>
+
+<h1>Scan du réseau</h1>
+<p>Les réseaux peuvent être scannés pour détecter les appareils à l'aide de l'utilitaire de scan. Cette fonctionnalité permet de scanner les chemins connectés par des coupleurs pour localiser tous les équipements du réseau. Les résultats sont affichés dans un tableau fournissant l'adresse 1-wire et une description de l'appareil. Pour ajouter rapidement un appareil comme point, cliquez sur l'icône <img src="images/icon_comp_add.png"/> associée. Un nouveau point sera créé avec les attributs du périphérique par défaut.</p>

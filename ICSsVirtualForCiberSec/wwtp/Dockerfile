@@ -1,2 +1,2 @@
-FROM sflorenz05/matlab_simulink:v0.3
+FROM newmatlab:r2022a_gcc
 ADD /simulink /home/matlab/Documents/MATLAB/simulink

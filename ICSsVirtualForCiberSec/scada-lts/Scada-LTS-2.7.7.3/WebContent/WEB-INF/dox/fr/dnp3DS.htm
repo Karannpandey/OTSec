@@ -1,0 +1,24 @@
+<!--
+    Scada-LTS - Open Source M2M - http://mango.serotoninsoftware.com
+    Copyright (C) 2006-2011 Serotonin Software Technologies Inc.
+    @auteur Matthew Lohbihler
+    
+    Ce programme est un logiciel libre : vous pouvez le redistribuer et/ou le modifier
+    aux termes de la licence publique générale GNU telle que publiée par
+    la Free Software Foundation, soit la version 3 de la licence, ou
+    (à votre choix) toute version ultérieure.
+
+    Ce programme est distribué dans l'espoir qu'il sera utile,
+    mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de
+    la qualité marchande ou l'adéquation à un usage particulier.  Voir le
+    Licence publique générale GNU pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la licence publique générale de GNU
+    en même temps que ce programme.  Si ce n'est pas le cas, voir http://www.gnu.org/licenses/.
+ -->
+
+<h1>Configuration</h1>
+<p>Chaque source de données nécessite un <b>Nom</b>, qui peut contenir n'importe quelle description.</p>
+<p>La <b>Adresse de la source</b> est l'adresse du maître, ou l'adresse de la source de données à enregistrer et la <b>Adresse de l'esclave</b> est l'adresse du dispositif à distance auquel vous souhaitez communiquer.</p>
+<p>La période de sondage <b>RBE</b> correspond à l'intervalle de temps pendant lequel le système effectue des réquisitions de classes 1, 2 et 3 (événements) au dispositif esclave. La <b>période d'interrogation statique</b> correspond à l'intervalle de temps pendant lequel le système fait des demandes de classe 0 à l'appareil et est <b>relative à la période d'interrogation de l'EBR</b>, donc, si la période d'EBR = 2s et la période d'interrogation statique = 30,<b> la source de données exigera des données de classe 0 toutes les 60 secondes à l'appareil.</b></p>
+

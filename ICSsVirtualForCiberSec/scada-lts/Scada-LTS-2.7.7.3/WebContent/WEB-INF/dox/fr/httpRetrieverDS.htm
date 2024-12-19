@@ -1,0 +1,24 @@
+<!--
+    Mango - Open Source M2M - http://mango.serotoninsoftware.com
+    Copyright (C) 2006-2011 Serotonin Software Technologies Inc.
+    @auteur Matthew Lohbihler
+    
+    Ce programme est un logiciel libre : vous pouvez le redistribuer et/ou le modifier
+    aux termes de la licence publique générale GNU telle que publiée par
+    la Free Software Foundation, soit la version 3 de la licence, ou
+    (à votre choix) toute version ultérieure.
+
+    Ce programme est distribué dans l'espoir qu'il sera utile,
+    mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de
+    la qualité marchande ou l'adéquation à un usage particulier.  Voir le
+    Licence publique générale GNU pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la licence publique générale de GNU
+    en même temps que ce programme.  Si ce n'est pas le cas, voir http://www.gnu.org/licenses/.
+ -->
+<h1>Vue d'ensemble</h1>
+<p>Cette source de données est utilisée pour recueillir des informations génériques à partir des sites web disponibles sur l'internet, ou des équipements internes disponibles sur un intranet. En utilisant des mécanismes similaires à ceux d'un navigateur web, la source de données demande des informations à des appareils compatibles HTTP, puis utilise des expressions régulières pour extraire les informations souhaitées. Il s'agit d'une source de données de sondage.</p>
+
+<h1>Configuration</h1>
+<p>Chaque source de données nécessite un <b>Nom</b>, qui peut être n'importe quelle description. Le <b>Période de mise à jour</b> détermine la fréquence de la requête HTTP. Le <b>URL</b> est l'adresse de la page qui doit être analysée. Utilisez l'icône <img src="images/bullet_go.png"/> pour tester l'URL. (S'ouvre dans une nouvelle fenêtre ou un nouvel onglet du navigateur.)</p>
+<p>Les champs <b>Temps d'arrêt</b> et <b>Reéssayer</b> déterminent combien de temps il faut attendre que le serveur web renvoie la page, et combien de fois il faut réessayer la connexion en cas de défaillance. Si toutes les tentatives sont épuisées, un événement d'exception de source de données est déclenché.</p>

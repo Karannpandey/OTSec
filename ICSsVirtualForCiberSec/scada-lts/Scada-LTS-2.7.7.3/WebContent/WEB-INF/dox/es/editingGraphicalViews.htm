@@ -1,0 +1,73 @@
+<!--
+    Scada-LTS - M2M de código abierto - http://mango.serotoninsoftware.com 
+    Derechos de autor (C) 2006-2011 Serotonin Software Technologies Inc.
+    El autor Matthew Lohbihler    
+    Este programa es software libre: puedes redistribuirlo y/o modificarlo. bajo los términos de la Licencia Pública General de GNU,
+    publicada por la Fundación de Software Libre, ya sea la versión 3 de la licencia, o (su elección) cualquier versión posterior.
+    Este programa se distribuye con la esperanza de que sea útil,  pero SIN NINGUNA GARANTÍA; sin siquiera la garantía implícita de comerciabilidad o idoneidad para un propósito particular.  
+    Vea el Licencia Pública General de GNU para más detalles.
+    Debería haber recibido una copia de la Licencia Pública General de GNU.Al mismo tiempo que este programa.  Si no, véase http://www.gnu.org/licenses/.
+ -->
+<h1>Visión general</h1>
+<p>Todos los atributos de una vista gráfica y sus puntos asociados pueden ser editados en la página de edición de la vista gráfica. Las vistas contienen una biblioteca de <b>componentes de ver</b>, que pueden ser estáticos o dinámicos basados en uno o más puntos.</p>
+
+<h1>Atributos de la vista gráfica</h1>
+<p>Todas las vistas están referidas por un nombre que aparece en la lista desplegable. Este nombre debe ser único, aunque no es obligatorio. Una vista puede tener una <b>Imagen de fondo</b> en la que se superpongan sus componentes. Se puede utilizar cualquier tipo de imagen como imagen de fondo, incluyendo los formatos GIF, JPEG y PNG. La opción <b>Acceso anónimo</b> permite a los usuarios no identificados acceder a la vista. La opción <b>Set</b> significa que los usuarios anónimos pueden establecer valores ajustables para los puntos de vista. <b>Lectura</b> significa que los usuarios anónimos pueden acceder a la vista pero no cambiar los valores. <b>Ningun</b> niega el acceso a los usuarios anónimos.</p>
+
+<h1>Componentes de la vista</h1>
+<p>Los componentes pueden ser añadidos a la vista, seleccione un componente de la lista y haga clic en el icono <img src="images/plugin_add.png"/>. Por defecto, los nuevos componentes se colocan en el centro de la vista, pero pueden ser movidos por arrastrar y soltar en cualquier lugar dentro de los límites del fondo. Tenga en cuenta que los puntos añadidos pueden superponerse. Al editar la vista, los componentes se escriben en el orden en que se definen. Si los componentes se superponen, el comportamiento de estas superposiciones puede verse afectado.</p>
+
+<h1>Contenido estático</h1>
+<p>Seleccione el componente <b>HTML</b> para añadir contenido estático. Por defecto, el icono <img src="images/html_add.png"/> representa el contenido. Estos componentes son independientes de los valores de los puntos, aparecen cuando la página se carga y no cambian más. Arrastre el elemento al lugar deseado. Para editarlo, coloque el cursor en el elemento y muestre los controles de edición. Para editarlo, haga clic en el icono <img src="images/pencil.png"/>) e introduzca un código html válido. El contenido se incluirá completamente en la vista,  así que cualquier código HTML válido (incluyendo el código Javascript) puede ser usado. Puedes definir los estilos directamente o utilizar las clases de estilo CSS de los archivos referenciados. Por ejemplo, para añadir una etiqueta, se pueden utilizar los siguientes elementos:</p>
+<pre>
+  &lt;span style="background-color:yellow;font-size:25px;font-weight:bold;border:2px solid orange;"&gt;Mi etiqueta&lt;/span&gt;
+</pre>
+<p>
+  Esto mostrará : <span style="background-color:yellow;font-size:25px;font-weight:bold;border:2px solid orange;">Mi etiqueta</span>
+</p>
+
+<p>
+  El contenido estático también puede referirse a otros servidores. Por ejemplo, puede colocar una imagen externa en sus vistas:
+</p>
+<pre>
+  &lt;img src="http://bluebrain.epfl.ch/webdav/site/bluebrain/shared/21june_06_singleNeuron_200.jpg"/&gt;
+</pre>
+<p>
+  Esto se mostrará: <img src="http://bluebrain.epfl.ch/webdav/site/bluebrain/shared/21june_06_singleNeuron_200.jpg"/>
+</p>
+
+<h1>Componentes puntuales</h1>
+<p>La visualización de todos los demás componentes de la lista depende de uno o más puntos. Una vez que se añade el componente en la vista, se representa por defecto con el icono genérico (<img src="images/icon_comp.png"/>)hasta que el componente tiene suficiente información para ser mostrado correctamente. Esta información depende del tipo de componente. En el modo de edición, la pantalla de visualización es la misma que en el modo de uso. Durante su creación se muestra y actualiza un punto para que el usuario sepa exactamente cómo aparecerá el punto en la vista.</p>
+
+<h1>tratamiento de los componentes del punto</h1>
+<p>Puedes cambiar la visualización de un componente pasando el ratón sobre el componente, esto mostrará los comandos de edición. En el modo de edición, los controles visualizados son diferentes de los de la página visualizada, excepto el control de información (<img src="images/information.png"/>), que muestra el valor puntual actual y el tiempo de actualización.</p>
+
+<p>Los atributos de un punto de vista se pueden establecer haciendo clic en el icono (<img src="images/plugin_edit.png"/>). Aparece un panel de edición que permite reemplazar los atributos del punto de vista. Por ejemplo, puede cambiar un punto ajustable a un punto no ajustable en la vista (lo contrario no es cierto, un punto no ajustable no puede ser ajustable). También es en este panel donde definiremos el punto o los puntos a mostrar. Los puntos propuestos en la lista desplegable dependen del tipo de componente elegido.</p>
+
+<p>La visualización de un punto se puede cambiar haciendo clic en el icono (<img src="images/graphic.png"/>). Aparece un panel que permite cambiar la visualización del punto. Por ejemplo, el componente <b>GIF analógico</b> puede ser usado para mostrar el valor numérico de un punto. Rellena los valores <b>Min</b> y <b>Max</b>, las imágenes se distribuirán uniformemente en el rango digital y se mostrarán correctamente. Un <b>GIF binario</b> sólo está disponible para los puntos binarios, y mostrará una de las dos imágenes disponibles dependiendo del valor actual del punto. Los gifs animados también son aplicables para representar el estado de funcionamiento de un dispositivo (cuando está funcionando o no). Se puede añadir un texto a la representación de un punto marcando la opción <b>Mostrar texto</b>. <b>Simple punto</b> Muestra sólo el texto del punto.</p>
+
+<p>El componente <b>GIF Dinámico </b> es similar al GIF analógico en el sentido de que puede mostrar el valor digital de un punto, pero en lugar de elegir un conjunto de imágenes dibuja dinámicamente el indicador del valor. Por ejemplo, el puntero puede ser dibujado en la imagen única de un reloj. Para añadir un elemento dinámico, añada una subcarpeta en la carpeta "gráficos", en esta nueva carpeta coloque sus propias imágenes y un archivo info.txt asociado. Luego agregue una función en el archivo "resources/view.js". El nombre de la función debe ser el nombre de la carpeta creada anteriormente. Ver por ejemplo el GIF Dial.</p>
+
+<p> <b>Server script</b> se utiliza para definir su propia lógica de visualización. El lenguaje de scripts utilizado es JavaScript, también conocido como ECMAScript. (La especificación completa del ECMAScript está disponible aquí <a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm" target="_blank">aquí</a>.) Sin embargo, no hay objetos de "ventana" o "documento" disponibles ya que el script se interpreta en el lado del servidor y no en el navegador. En cambio, el valor actual del punto está disponible a través de la variable <b>valor</b> , y la marca de tiempo de la muestra  a través de la variable <b>tiempo</b>. Además, las variables <b>puntoComponente</b> y <b>punto</b> también están definidas, con valores similares a "htmlTexto" y "renderizadoTexto". Por último, en "eventos" se enumeran los eventos actualmente activos y "hasUnacknowledgdEvent" es un valor booleano que indica si no se reconoce al menos uno de los eventos activos.</p>
+<p>Cualquier valor puede ser devuelto por el guión y mostrado de forma sencilla, pero es más interesante insertar código HTML en el guión. Por ejemplo, el siguiente guión mostrará un mensaje parpadeante cuando el valor del punto sea "1" (interpretado por "true" por el guión):</p>
+<pre>
+  if (value)
+      return '&lt;blink&gt;&lt;span style="background-color:orange;font-size:15px;font-weight:bold;"&gt;Advertencia: el punto está encendido&lt;/span&gt;&lt;/blink&gt;';
+  return "";
+</pre>
+<p>Tengan en cuenta que en la página de edición, si el guión no devuelve nada, se mostrará el icono <img src='images/logo_icon.gif'/> para acceder al control de los puntos (el ratón sobre el icono).</p>
+
+<p>La marca de tiempo de la muestra se da en milisegundos con el 1 de enero de 1970 como origen. Se puede convertir en un objeto de fecha ECMA con el siguiente código:</p>
+<pre>
+  var d = new Date();
+  d.setTime(time);
+</pre>
+<p>
+  El objeto de fecha "d" puede ser usado si es necesario en la continuación del guión:
+</p>
+
+<p>Los puntos de vista pueden ser eliminados haciendo clic en el icono (<img src="images/plugin_delete.png"/>), pasando por encima del punto con el ratón.</p>
+
+<h1>Guardar una vista</h1>
+<p>Todos los cambios de una vista se guardan sólo con el botón <b>Save</b>. En caso de cambios erróneos en la vista, haga clic en el botón <b>Cancel</b>. Para borrar una vista, haga clic en el botón <b>Borrar</b>.
+</p>

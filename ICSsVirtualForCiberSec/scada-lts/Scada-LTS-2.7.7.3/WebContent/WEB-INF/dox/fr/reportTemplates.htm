@@ -1,0 +1,41 @@
+<!--
+    Mango -Open Source M2M - http://mango.serotoninsoftware.com
+    Copyright (C) 2006-2011 Serotonin Software Technologies Inc.
+    @auteur Matthew Lohbihler
+    
+    Ce programme est un logiciel libre : vous pouvez le redistribuer et/ou le modifier
+    aux termes de la licence publique générale GNU telle que publiée par
+    la Free Software Foundation, soit la version 3 de la licence, ou
+    (à votre choix) toute version ultérieure.
+
+    Ce programme est distribué dans l'espoir qu'il sera utile,
+    mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de
+    la qualité marchande ou l'adéquation à un usage particulier.  Voir le
+    Licence publique générale GNU pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la licence publique générale de GNU
+    en même temps que ce programme.  Si ce n'est pas le cas, voir http://www.gnu.org/licenses/.
+ -->
+<h1>Vue d'ensemble</h1>
+<p>Modèles de rapport fournit la définition de la manière de créer des instances de rapport. Pour une description des modèles par rapport aux instances, voir la documentation "Instances de rapport".</p>
+
+<h1>Liste des modèles de rapport</h1>
+<p>Pour ajouter un nouveau modèle de rapport, cliquez sur l'icône <img src="images/report_add.png"/>. Pour modifier un modèle existant, cliquez sur le nom du modèle dans la liste "Modèles de rapport".</p>
+
+<h1>Edition des détails du modèle de rapport</h1>
+<p>Le modèle <b>nom</b> est utilisé pour référencer visuellement le modèle. Il est recommandé d'utiliser un nom unique pour chaque détecteur, mais ce n'est pas obligatoire.</p>
+<p>Utilisez la liste <b>Points</b> pour sélectionner les points à inclure dans le rapport. Pour ajouter un point, sélectionnez-le dans la liste et cliquez sur l'icône <img src="images/add.png"/>. Pour supprimer un point existant, cliquez sur l'icône <img src="images/bullet_delete.png"/> icône associée au point.</p>
+<p>Les valeurs <b>Couleur</b> peuvent être un hexagone de style HTML, ou tout nom de couleur dans la spécification HTML. Par exemple, "#2468AC", "red", et "dodgerblue" sont tous des valeurs valides.</p>
+<p><b>La plage de dates </b> est utilisée pour déterminer les valeurs à sélectionner pour le rapport. L'intervalle peut être relatif ou absolu. Dans la plupart des cas, une fourchette relative est appropriée. Les plages de dates relatives peuvent être basées soit sur des données "antérieures", soit sur des données "passées". Une plage <b>passé</b> comprend la période donnée se terminant maintenant. Une plage <b>précédente</b> comprend également la période donnée, mais son heure de fin est quantifiée pour correspondre au type de période. Par exemple, si le type de période est "Heure(s)" et que le nombre de périodes est 1, et que le rapport se déroule à 18:05, la période qui sera utilisée est de 17:00 (inclus) à 18:00 (exclus). Si le nombre de périodes était, par exemple, de 3, la période serait de 15h00 à 18h00. De même, le "Mois" commence à minuit le premier jour du mois précédent et se termine le dernier jour du mois précédent (lorsque le nombre de périodes est 1). Les autres types de périodes fonctionnent de la même manière. Une semaine commence le lundi à minuit, conformément aux normes ISO.</p>
+
+<h1>Programmation des rapports</h1>
+<p>Les rapports peuvent être <b>programmés</b>d pour s'exécuter automatiquement. Utilisez la sélection <b>Exécuter chaque...</b> pour déterminer un simple événement temporel sur lequel il doit s'exécuter, ou définissez un modèle de cron pour un contrôle plus spécifique. (Voir la documentation "Motifs de cron" pour plus d'informations.) Les événements temporels se produisent au début de la période donnée. Les semaines commencent le lundi conformément aux normes ISO. Un délai d'exécution <b> peut être appliqué si les données attendues sur le rapport ont tendance à être collectées plus tard que le temps d'exécution absolu.<p>
+  <p>Les rapports prévus pour les utilisateurs handicapés ne sont pas exécutés.</p>
+
+<h1>Rapport sur l'envoi de courriers électroniques</h1>
+<p>Bien que les rapports ne puissent pas être explicitement partagés avec le système, ils peuvent l'être implicitement en créant une liste de diffusion à laquelle envoyer l'instance de rapport générée. Le contenu du courrier électronique est le même que celui de la fenêtre "Report Chart" ouverte dans le panneau "Report queue". Pour inclure le fichier d'exportation CSV avec le courriel, cochez la case <b>Inclure les données tabulaires</b>.</p>
+<p>Sélectionnez les <b>Destinataires du courrier électronique</b> auxquels envoyer le courrier électronique du rapport. Les destinataires peuvent être des listes de diffusion, des utilisateurs du système ou des adresses électroniques libres. Cliquez sur l'icône <img src="images/email_go.png"/> pour envoyer un message de test aux destinataires sélectionnés.</p>
+<p><b>Important</b> : Les rapports envoyés par courrier électronique sont automatiquement supprimés immédiatement après leur envoi.</p>
+
+<h1>Gestion du modèle</h1>
+<p> Pour enregistrer un modèle de rapport, cliquez sur l'icône <img src="images/save.png"/> en haut à droite du panneau des critères de rapport. Pour supprimer un modèle existant, cliquez sur l'icône <img src="images/delete.png"/>. Pour exécuter un modèle de rapport immédiatement, cliquez sur l'icône <img src="images/report_go.png"/>. Notez que certains modèles de rapport peuvent contenir beaucoup d'informations et peuvent donc prendre beaucoup de temps à exécuter. Ainsi, tous les rapports sont exécutés de manière asynchrone par rapport à l'interface utilisateur. Pour faire une copie d'un modèle de rapport, cliquez sur l'icône <img src="images/report_add.png"/>.</p>

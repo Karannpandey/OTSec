@@ -1,0 +1,23 @@
+<!--
+    Mango - Open Source M2M - http://mango.serotoninsoftware.com
+    Copyright (C) 2006-2011 Serotonin Software Technologies Inc.
+    @auteur Matthew Lohbihler
+    
+    Ce programme est un logiciel libre : vous pouvez le redistribuer et/ou le modifier
+    aux termes de la licence publique générale GNU telle que publiée par
+    la Free Software Foundation, soit la version 3 de la licence, ou
+    (à votre choix) toute version ultérieure.
+
+    Ce programme est distribué dans l'espoir qu'il sera utile,
+    mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de
+    la qualité marchande ou l'adéquation à un usage particulier.  Voir le
+    Licence publique générale GNU pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la licence publique générale de GNU
+    en même temps que ce programme.  Si ce n'est pas le cas, voir http://www.gnu.org/licenses/.
+ -->
+<p>
+  Le paramètre <b>HTTP nom</b> est la clé utilisée pour livrer les données à la source de données du récepteur HTTP. Elle est fournie sous la forme de la partie "pointName" dans les valeurs de point formatées soit comme "pointName=pointValue" ou __pointFoo=pointName&amp;__valueFoo=pointValue'. Vous pouvez utiliser la fonctionnalité d'écoute du récepteur HTTP dans la configuration de la source de données du récepteur pour déterminer les noms des paramètres disponibles dans vos demandes.
+</p>
+<p>Le <b>Type de données</b> est tout type de données valide. Voir l'aperçu général du système pour plus d'informations sur les types de données.</p>
+<p>Si le type de données est Binaire, une valeur <b>Binaire 0</b> doit être fournie. Si la valeur du point dans la demande correspond à cette valeur, la valeur attribuée au point sera 0 ; sinon, elle sera 1.</p>

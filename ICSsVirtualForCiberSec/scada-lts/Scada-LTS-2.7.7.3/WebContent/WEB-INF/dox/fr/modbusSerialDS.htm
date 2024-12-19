@@ -1,0 +1,50 @@
+<!--
+    Mango - Open Source M2M - http://mango.serotoninsoftware.com
+    Copyright (C) 2006-2011 Serotonin Software Technologies Inc.
+    @auteur Matthew Lohbihler
+    
+    Ce programme est un logiciel libre : vous pouvez le redistribuer et/ou le modifier
+    aux termes de la licence publique générale GNU telle que publiée par
+    la Free Software Foundation, soit la version 3 de la licence, ou
+    (à votre choix) toute version ultérieure.
+
+    Ce programme est distribué dans l'espoir qu'il sera utile,
+    mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de
+    la qualité marchande ou l'adéquation à un usage particulier.  Voir le
+    Licence publique générale GNU pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la licence publique générale de GNU
+    en même temps que ce programme.  Si ce n'est pas le cas, voir http://www.gnu.org/licenses/.
+ -->
+<h1>Vue d'ensemble</h1>
+<p>
+  La source de données série Modbus est utilisée pour recueillir des données à partir d'un réseau local Modbus, accessible via une communication RS232 ou RS485 (nécessite un adaptateur). Il s'agit d'une source de données d'interrogation.
+</p>
+
+<h1>Configuration</h1>
+<p>
+  Chaque source de données nécessite un <b>Nom</b>, qui peut être n'importe quelle description. Le <b>Période de mise à jour</b> détermine la fréquence à laquelle l'équipement Modbus est interrogé pour des données. La vérification <b>Quantize</b> entraîne un retard dans le démarrage de la source de données, de sorte que les interrogations se produisent à un moment "arrondi" (par exemple, si l'interrogation a lieu toutes les 10 secondes, les interrogations se produiront à la 10e seconde, à la 20e seconde, etc.) ). Sinon, le scrutin commencera immédiatement. Les champs <b>Timeout</b> et <b>Retries</b> déterminent le comportement du système en cas d'échec du scrutin. La source de données attend le nombre de millisecondes de délai d'attente donné pour obtenir une réponse du réseau. Si elle n'est pas reçue, la demande sera réessayée le nombre de fois indiqué.
+</p>
+<p>
+  La case à cocher <b> Lots contigus seulement</b> peut être utilisée pour spécifier que l'implémentation modbus ne doit pas tenter d'optimiser des requêtes de valeur disparates en une seule requête. Si vous cochez cette case, l'implémentation n'effectuera des demandes de valeurs multiples que lorsque ces valeurs forment un espace de registre contigu.
+</p>
+<p>
+  La case <b>Create slave monitor points</b> indique si les points de surveillance des esclaves doivent être automatiquement créés par la source de données. Un point de surveillance d'esclave est un point binaire qui indique l'état actuel d'un esclave. Si une demande d'interrogation à un esclave échoue en raison d'un dépassement de temps ou d'une erreur, l'esclave est considéré comme hors ligne. Ces points peuvent alors être utilisés pour le contrôle, tout comme les autres points.
+</p>
+<p>
+  Les champs <b>Max read bit count</b>, <b>Max read register count</b>, et <b>Max write register count</b> contrôlent la taille des demandes par lots. La spécification Modbus fournit des valeurs par défaut pour ces valeurs, mais certains matériels peuvent imposer des limites différentes.
+</p>
+<p>
+  La communication série est contrôlée par les valeurs <b>Débit en bauds</b>, <b>Contrôle de flux en entrée</b>, <b>Contrôle de flux en sortie</b>, <b>Bits de données</b>, <b>Bits d'arrêt</b> et <b>Parité</b>. Le réglage <b>Echo</b> peut être utilisé avec les réseaux RS485 selon le cas.
+</p>
+<p>
+  La valeur <b>Encoding</b> détermine la façon dont les requêtes Modbus sont formatées. La plupart des matériels de production utilisent des messages formatés en RTU. Consultez la documentation Modbus de votre équipement pour déterminer comment définir ce champ.
+</p>
+<p>
+  La valeur <b>Concurrency</b> détermine la façon dont les requêtes Modbus sont synchronisées. Une valeur de <b>Transport</b> signifie que toute requête doit être terminée avant que la suivante ne puisse commencer. <b>Slave</b> signifie que toute requête vers un esclave doit être terminée avant qu'une autre pour le même esclave puisse commencer, mais les requêtes vers des esclaves séparés peuvent se produire simultanément. <b>Fonction</b> signifie que toute demande d'un esclave/fonction particulier doit être terminée avant qu'une autre demande pour le même esclave/fonction puisse commencer. La valeur Function permet le plus haut niveau de simultanéité possible en série modbus, mais peut provoquer une corruption des données dans certains réseaux en fonction du duplexage.
+</p>
+
+<h1>Lecture des nœuds</h1>
+<p>
+  Les réseaux peuvent être scannés pour détecter les nœuds esclaves à l'aide de l'utilitaire de scan. Cette fonction itére de l'ID esclave 1 à 240, en envoyant à chacun un ReadExceptionStatus (code de fonction 7). Si une réponse est reçue (en utilisant le délai d'attente et les paramètres de réessai donnés), le nœud est considéré comme disponible. Notez que tous les équipements ne prennent pas en charge ce code de fonction, de sorte que des faux négatifs sont possibles.
+</p>

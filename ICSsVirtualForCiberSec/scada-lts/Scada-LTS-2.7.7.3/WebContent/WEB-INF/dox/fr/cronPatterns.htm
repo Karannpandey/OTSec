@@ -1,0 +1,25 @@
+<!--
+    Mango - Open Source M2M - http://mango.serotoninsoftware.com
+    Copyright (C) 2006-2011 Serotonin Software Technologies Inc.
+    @auteur Matthew Lohbihler
+    
+    Ce programme est un logiciel libre : vous pouvez le redistribuer et/ou le modifier
+    aux termes de la licence publique générale GNU telle que publiée par
+    la Free Software Foundation, soit la version 3 de la licence, ou
+    (à votre choix) toute version ultérieure.
+
+    Ce programme est distribué dans l'espoir qu'il sera utile,
+    mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de
+    la qualité marchande ou l'adéquation à un usage particulier.  Voir le
+    Licence publique générale GNU pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la licence publique générale de GNU
+    en même temps que ce programme.  Si ce n'est pas le cas, voir http://www.gnu.org/licenses/.
+ -->
+<p>Les modèles Cron proviennent de l'outil "cron" (de "chronologique") des systèmes UNIX. Ces modèles peuvent paraître ésotériques au premier abord, ce sont en fait des moyens simples, puissants et élégants de définir un ensemble de paramètres de planification d'évènements.</p>
+
+<p>Les modèles Cron de Scada-LTS sont régis par Quartz, une bibliothèque de planification basée sur Java. Plus d'informations sur le site: </p>
+<p><a href="http://www.quartz-scheduler.org/documentation/quartz-2.3.0/tutorials/crontrigger.html" target="_blank">CronTriggers Tutorial</a></p>
+<p><a href="https://www.freeformatter.com/cron-expression-generator-quartz.html" target="_blank">CronTriggers Generator</a></p>
+
+<p>Example configuration: <b>1 */15 * * * ?</b> = At second :01, every 15 minutes starting at minute :00, of every hour </p>

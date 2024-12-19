@@ -1,0 +1,27 @@
+<!--
+    Mango - Open Source M2M - http://mango.serotoninsoftware.com
+    Copyright (C) 2006-2011 Serotonin Software Technologies Inc.
+    @auteur Matthew Lohbihler
+    
+    Ce programme est un logiciel libre : vous pouvez le redistribuer et/ou le modifier
+    aux termes de la licence publique générale GNU telle que publiée par
+    la Free Software Foundation, soit la version 3 de la licence, ou
+    (à votre choix) toute version ultérieure.
+
+    Ce programme est distribué dans l'espoir qu'il sera utile,
+    mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de
+    la qualité marchande ou l'adéquation à un usage particulier.  Voir le
+    Licence publique générale GNU pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la licence publique générale de GNU
+    en même temps que ce programme.  Si ce n'est pas le cas, voir http://www.gnu.org/licenses/.
+ -->
+<h1>Vue d'ensemble</h1>
+<p>La source de données de l'auditeur NMEA est utilisée pour recevoir des messages provenant d'équipements conformes à la norme NMEA 0183. Les appareils sont connectés via les ports RS232 ou RS485 (nécessite un adaptateur). Cette source de données reçoit des mises à jour régulières des appareils connectés ; elle ne pollue pas.</p>
+
+<h1>Configuration</h1>
+<p>Chaque source de données nécessite un <b>Nom</b>, qui peut être n'importe quelle description. La sélection <b>Port</b> fournit une liste de tous les ports série disponibles sur le matériel hôte. Cela correspond au port dans lequel l'équipement NMEA est connecté. La sélection <b>Baud rate</b> est la vitesse à laquelle votre équipement peut communiquer ses messages. En général, cette valeur est de 4800, mais d'autres valeurs sont possibles. Consultez votre documentation NMEA pour plus de détails. Les valeurs de checksum sont validées si elles sont incluses dans le message. Si la validation de la somme de contrôle échoue, le message est ignoré.</p>
+
+<h1>Ecouteur du message NMEA</h1>
+<p>Une fois que l'équipement NMEA a été connecté à l'hôte, il est possible de démarrer un auditeur qui attend l'arrivée des messages. Le taux d'arrivée des messages dépend de l'équipement. Les messages seront affichés en excluant le message "enveloppe", c'est-à-dire l'indicateur de début "$", l'indicateur de fin CRLF, et la valeur "*" et la somme de contrôle si elle est présente.</p>
+<p>Les messages affichés peuvent être copiés et collés dans la case <b>Message de test de la regex</b> pour être testés par rapport à la regex de vos points.</p>

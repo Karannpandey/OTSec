@@ -1,0 +1,38 @@
+<!--
+    Mango - M2M de código abierto - http://mango.serotoninsoftware.com 
+    Derechos de autor (C) 2006-2011 Serotonin Software Technologies Inc.
+    El autor Matthew Lohbihler    
+    Este programa es software libre: puedes redistribuirlo y/o modificarlo. bajo los términos de la Licencia Pública General de GNU,
+    publicada por la Fundación de Software Libre, ya sea la versión 3 de la licencia, o (su elección) cualquier versión posterior.
+    Este programa se distribuye con la esperanza de que sea útil,  pero SIN NINGUNA GARANTÍA; sin siquiera la garantía implícita de comerciabilidad o idoneidad para un propósito particular.  
+    Vea el Licencia Pública General de GNU para más detalles.
+    Debería haber recibido una copia de la Licencia Pública General de GNU.Al mismo tiempo que este programa.  Si no, véase http://www.gnu.org/licenses/.
+ -->
+<p>Scada-LTS soporta cuatro tipos de registro de valor puntual</p>
+
+<p><b>Cuando el valor cambia</b> que es el ajuste por defecto. El valor y su ocurrencia temporal se almacenan en la base de datos sólo si el valor del punto cambia. Este escenario ofrece la mejor relación calidad/espacio de almacenamiento (histórico). Para los valores numéricos, también se puede establecer una <b>Tolerancia</b>, o "zona muerta"; el valor se almacenará si la diferencia entre el valor actual y el anterior es mayor o igual a la tolerancia establecida.</p>
+
+<p>El parámetro <b>Todos los datos</b> hace que todas las actualizaciones de datos se almacenen en la base de datos. Utilice este ajuste sólo cuando sus limitaciones lo requieran, ya que causará rápidamente una gran acumulación de datos y ralentizará seriamente el rendimiento.</p>
+
+<p>El parámetro <b>No registrar</b> impide que este punto sea registrado en la base de datos. Ten en cuenta que en este caso no podrás aplicar ningún tipo de renderizado de gráficos para este punto. Usa "No grabar" cuando estés seguro de que no necesitas el historial de datos.</p>
+
+<p>El parámetro <b> Intervalo</b> el número de accesos al valor del punto son diferentes del número de registros en la base de datos. Utilice este parámetro cuando sea necesario acceder con frecuencia a los datos (por ejemplo, para la detección de eventos), pero no es necesario registrar todos los datos. <b>Tipo de valor </b> permite elegir el valor que se registrará. "Instantáneo" el valor actual del punto, las otras opciones son estadísticas sobre el valor del punto durante el período definido.</p>
+
+<p>El parámetro <b> para cambiar el timestamp</b>. Comparable al parámetro <b>cuando el valor cambia</b>, pero es la marca de tiempo la que se compara y no el valor.</p>
+
+<p><b>Rechazar valores extremos</b> se utiliza para dispositivos que pueden emitir ocasionalmente valores erróneos. Cuando se selecciona <b>Rechazar valores extremos</b>, se activan los cuadros de diálogo <b>rechazar límite bajo</b> y <b>rechazar límite alto</b>. Todos los valores ya guardados se conservarán.</p>
+
+<p>
+    The <b>Purge strategy</b> option allows user to choose strategy of data purging. Two types are supported: <b>Period</b> and <b>Values Limit</b>.
+    El proceso de purga comienza todos los días a las 3:05 a.m. hora local.
+</p>
+
+<p>El parámetro <b>Period</b> determina la duración de la historia del valor del punto en la base de datos. En la práctica, los valores pueden mantenerse tanto tiempo como sea necesario, pero hay que tener en cuenta que esto puede dar lugar a una degradación del rendimiento del sistema si el historial de un punto se hace demasiado grande (de hecho, el rendimiento del sistema depende en gran medida del equipo informático central). </p>
+
+<p>
+    When the <b>Values Limit</b> type is selected, every time purging is performed for datapoint, number of values set in
+    <b>Values Limit</b> will be left in database for this datapoint. The default value can be set in
+    system settings (<b>Values limit for purge</b>).
+</p>
+
+<p> <b>El tamaño de la caché por defecto</b> es el número de valores que se almacenarán en la memoria. Este parámetro es importante cuando se elige un método distinto a "Todos los datos". Los valores en la memoria serán eventualmente comparados con los valores almacenados en la base de datos. Un valor elevado del tamaño de la memoria caché puede mejorar el rendimiento del sistema (ya que puede impedir las consultas a la base de datos), pero la memoria es entonces consumida por la caché y pueden surgir problemas relacionados con la falta de memoria. "Vaciar la memoria caché" no es necesario en teoría, pero puede ser útil en caso de eliminación manual de puntos (utilizando funciones SQL, por ejemplo).</p>

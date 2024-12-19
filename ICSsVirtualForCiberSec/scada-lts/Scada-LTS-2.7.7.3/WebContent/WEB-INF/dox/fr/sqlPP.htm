@@ -1,0 +1,26 @@
+<!--
+    Mango -Open Source M2M - http://mango.serotoninsoftware.com
+    Copyright (C) 2006-2011 Serotonin Software Technologies Inc.
+    @auteur Matthew Lohbihler
+    
+    Ce programme est un logiciel libre : vous pouvez le redistribuer et/ou le modifier
+    aux termes de la licence publique générale GNU telle que publiée par
+    la Free Software Foundation, soit la version 3 de la licence, ou
+    (à votre choix) toute version ultérieure.
+
+    Ce programme est distribué dans l'espoir qu'il sera utile,
+    mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de
+    la qualité marchande ou l'adéquation à un usage particulier.  Voir le
+    Licence publique générale GNU pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la licence publique générale de GNU
+    en même temps que ce programme.  Si ce n'est pas le cas, voir http://www.gnu.org/licenses/.
+ -->
+<p>Les attributs utilisés pour configurer les points de source de données SQL diffèrent légèrement selon que la requête est basée sur des lignes ou des colonnes. Dans les deux cas, le type de données <b>Data type</b> détermine le type de données du point de données Scada-LTS. Les valeurs de l'ensemble des résultats sont automatiquement converties dans ce type. </p>
+
+<p>Pour les requêtes basées sur les lignes, l'identificateur de ligne <b>Row identifier</b> est comparé à la première colonne du jeu de résultats pour trouver la ou les lignes qui contiennent des valeurs (la deuxième colonne) pour ce point. Les dépassements de temps sont pris dans la troisième colonne si elle existe.</p>
+
+<p>Pour les requêtes basées sur des colonnes, le <b>Nom de la colonne</b> correspond au nom de la colonne dans l'ensemble de résultats dont la valeur du point est extraite. La colonne <b>Colonne d'annulation du temps</b> (facultatif) spécifie la colonne à utiliser comme annulation du temps du point. Notez que plusieurs points peuvent utiliser la même dérogation temporelle le cas échéant.</p>
+
+<h1>Mise à jour des déclarations</h1>
+<p>Une <b>Déclaration de mise à jour</b> peut éventuellement être définie pour un point, ce qui détermine comment la valeur du point peut être fixée dans la base de données. Il s'agit d'une instruction SQL standard utilisant "update" ou "insert". Si cette instruction n'est pas définie, le point sera considéré comme non paramétrable.</p>

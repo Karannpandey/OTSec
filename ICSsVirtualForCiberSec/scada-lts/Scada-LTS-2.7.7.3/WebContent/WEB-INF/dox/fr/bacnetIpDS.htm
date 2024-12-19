@@ -1,0 +1,31 @@
+<!--
+    Mango - Open Source M2M - http://mango.serotoninsoftware.com
+    Copyright (C) 2006-2009 Serotonin Software Technologies Inc.
+    @auteur Matthew Lohbihler
+    
+    Ce programme est un logiciel libre : vous pouvez le redistribuer et/ou le modifier
+    aux termes de la licence publique générale GNU telle que publiée par
+    la Free Software Foundation, soit la version 3 de la licence, ou
+    (à votre choix) toute version ultérieure.
+
+    Ce programme est distribué dans l'espoir qu'il sera utile,
+    mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de
+    la qualité marchande ou l'adéquation à un usage particulier.  Voir le
+    Licence publique générale GNU pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la licence publique générale de GNU
+    en même temps que ce programme.  Si ce n'est pas le cas, voir http://www.gnu.org/licenses/.
+ -->
+<h1>Vue d'ensemble</h1>
+<p>La source de données BACnet I/P est utilisée pour recueillir des données à partir d'appareils compatibles BACnet I/P accessibles sur un réseau I/P. Les appareils peuvent se trouver dans un réseau local ou un intranet, ou peuvent également se trouver n'importe où sur l'internet. Cette source de données utilise à la fois des sondages et des abonnements COV (Change Of Value) pour la mise à jour, le cas échéant.</p>
+
+<h1>Configuration</h1>
+<p>Chaque source de données nécessite un <b>Nom</b>, qui peut être n'importe quelle description. La <b>période de mise à jour</b> détermine la fréquence à laquelle l'équipement BACnet est interrogé pour obtenir des données. L'interrogation n'est utilisée que si un objet souhaité ne prend pas en charge les abonnements COV. L'appareil est automatiquement interrogé sur les services qu'il prend en charge pour faire cette détermination.</p>
+<p>Le <b>ID de l'appareil</b> est l'identifiant que Mango fournira aux autres équipements dans son message IAm. Un message IAm est automatiquement envoyé au démarrage de la source de données pour déclarer sa présence sur le réseau, et est également envoyé en réponse aux demandes WhoIs appropriées.</p>
+<p>Le <b>Adresse de diffusion</b> est l'adresse IP des messages diffusés. Votre administrateur réseau vous fournira une valeur appropriée à utiliser. Le <b>Port</b> est le numéro de port sur lequel Mango écoutera les messages entrants. Notez que Mango prend en charge les situations où d'autres équipements du réseau BACnet écoutent sur d'autres ports, mais les messages de diffusion ne seront envoyés qu'au numéro de port sur lequel Mango écoute.</p>
+<p>Les valeurs <b>Timeout</b>, <b>Segment timeout</b>, <b>Segment window</b>, et <b>Retries</b> sont des attributs de messagerie BACnet. Dans la plupart des cas, les valeurs par défaut données devraient être appropriées. Consultez la documentation de BACnet I/P ou votre administrateur de réseau pour déterminer si d'autres valeurs doivent être utilisées pour votre réseau.</p>
+<p>Le <b>COV lease time</b> est le nombre de minutes que Mango demandera pour détenir un COV lease. Mango tentera automatiquement de renouveler ses abonnements au COV après que la moitié du temps donné se soit écoulée. Ainsi, si le temps le plus court est de 60 minutes, Mango demandera au dispositif d'honorer la location pendant 60 minutes, et se réabonnera après 30.</p>
+<p>Lorsque les abonnements COV ne sont pas disponibles, on utilise à la place le scrutin au tarif donné. Les appareils sont interrogés individuellement. Les appareils qui prennent en charge les demandes ReadPropertyMultiple reçoivent ce message, partitionné pour ne pas contenir plus de 200 propriétés dans une seule demande si nécessaire. Sinon, les demandes individuelles de ReadProperty sont envoyées.</p>
+
+<h1>Découverte de BACnet I/P</h1>
+<p>Les réseaux I/P de BACnet peuvent être découverts automatiquement par la diffusion de messages WhoIs. Les appareils sont tenus de répondre par un message IAm, qui contient quelques informations de base sur l'appareil. Pour tester les paramètres de configuration et déterminer quels dispositifs sont disponibles pour les points, entrez le numéro <b>Port</b> auquel diffuser et cliquez sur le bouton "Envoyer les WhoIs". (Si le numéro de port n'est pas fourni, la valeur de la configuration est utilisée). Un seul message WhoIs sera envoyé, puis le dispositif écoutera les messages IAm indéfiniment. (Cliquer sur "Annuler" arrêtera l'auditeur.) Au fur et à mesure que les messages IAm sont reçus, les informations sur les dispositifs seront affichées dans le tableau ci-dessous. Ces informations peuvent être utilisées pour la création de points.</p>

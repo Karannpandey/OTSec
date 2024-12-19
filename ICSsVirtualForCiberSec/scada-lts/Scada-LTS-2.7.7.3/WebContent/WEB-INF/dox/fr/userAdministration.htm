@@ -1,0 +1,35 @@
+<!--
+    Mango -Open Source M2M - http://mango.serotoninsoftware.com
+    Copyright (C) 2006-2011 Serotonin Software Technologies Inc.
+    @auteur Matthew Lohbihler
+    
+    Ce programme est un logiciel libre : vous pouvez le redistribuer et/ou le modifier
+    aux termes de la licence publique générale GNU telle que publiée par
+    la Free Software Foundation, soit la version 3 de la licence, ou
+    (à votre choix) toute version ultérieure.
+
+    Ce programme est distribué dans l'espoir qu'il sera utile,
+    mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de
+    la qualité marchande ou l'adéquation à un usage particulier.  Voir le
+    Licence publique générale GNU pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la licence publique générale de GNU
+    en même temps que ce programme.  Si ce n'est pas le cas, voir http://www.gnu.org/licenses/.
+ -->
+
+<h1>Vue d'ensemble</h1>
+<p><b>Utilisateurs</b> ce sont les personnes qui utilisent le système. Différent privilèges peuvent être attribués aux utilisateurs pour leurs permettre de lire, modifier les données ou gèrer les paramètres du système.</p>
+
+<p>Il existe deux niveaux d'utilistateur: Les administrateurs (<img src="images/user_suit.png"/>), et les autres utilisateurs(<img src="images/user_green.png"/>). Les administrateurs ont accès à toutes les fonctionnalités du système. Les autres ont des accès limités suivant leurs configurations.</p>
+
+<h1>Edition des utilisateurs</h1>
+<p>Pour ajouter un utilisateur, cliquez sur l'icône <img src="images/user_add.png"/>. L'utilisateur ne sera pas ajouté tant qu'il n'aura pas été enregistré avec succès. Pour modifier un utilisateur, cliquez sur le nom de l'utilisateur dans la liste "Utilisateurs".</p>
+<p>Les mots de passe ne peuvent pas être déchiffrés une fois enregistrés; Ils peuvent uniquement être réinitialisés par un nouveau mot de passe.</p>
+<p>Un utilisateur désactivés ne peut pas se connecter. Pour supprimer un utilisateur, cliquez sur l'icône <img src="images/delete.png"/>.</p>
+<p>Pour tester l'adresse mail d'un utilisateur, cliquer sur l'icône <img src="images/email_go.png"/>.Un message sera envoyé à l'adresse spécifiée.</p>
+<p>Les utilisateurs peuvent recevoir des mails même s'ils ne figurent pas dans une liste de destinataires des gestionnaires d'évènement. Sélectionnez  le niveau d'alarme <b>Envoi d'alarme par mail</b>  "aucun" fera en sorte que ces notifications soient envoyées lorsque le niveau d'alarme de l'événement est supérieur ou égal au niveau d'alarme minimum de l'utilisateur, mais uniquement lorsque l'événement est déclenché (c'est-à-dire pas d'escalade ou notifications inactives). Notez que si l'utilisateur est déjà présent dans le gestionnaire d'évènement, il ne recevra pas de mail en double.</p>
+
+<h1>Droits utilisateur</h1>
+<p>La case à cocher <b>Administrateur</b> détermine si l'utilisateur est administrateur.</p>
+<p>Si l'utilisateur n'est pas administrateur, toutes les source de données disponibles seront affichées. Le fait de cocher la case située à côté du nom de la source de données indique que l'utilisateur peut modifier les paramètres de la source de données, ainsi qu'accéder à toutes les données produites par cette source de données.</p>
+<p>Si la source de données n'est pas vérifiée, une liste de tous les points de la source de données sera affichée. Chaque point peut être réglé individuellement pour un accès en lecture, en écriture ou, si le point est réglable, en lecture. (Avoir un accès en écriture implique avoir un accès en lecture.)</p>

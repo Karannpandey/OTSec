@@ -1,0 +1,42 @@
+<!--
+    Mango - Open Source M2M - http://mango.serotoninsoftware.com
+    Copyright (C) 2006-2011 Serotonin Software Technologies Inc.
+    @auteur Matthew Lohbihler
+    
+    Ce programme est un logiciel libre : vous pouvez le redistribuer et/ou le modifier
+    aux termes de la licence publique générale GNU telle que publiée par
+    la Free Software Foundation, soit la version 3 de la licence, ou
+    (à votre choix) toute version ultérieure.
+
+    Ce programme est distribué dans l'espoir qu'il sera utile,
+    mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de
+    la qualité marchande ou l'adéquation à un usage particulier.  Voir le
+    Licence publique générale GNU pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la licence publique générale de GNU
+    en même temps que ce programme.  Si ce n'est pas le cas, voir http://www.gnu.org/licenses/.
+ -->
+<p>
+  Utilisez le paramètre <b>Langue du système</b> pour changer la langue que le système utilisera dans les cas où la langue est autrement inconnue. Par exemple, les rapports et les courriels ne sont pas associés à un utilisateur spécifique ou sont associés à plusieurs utilisateurs. La langue du système sera utilisée dans ces situations.
+</p>
+
+<p>
+  Notez que Scada-LTS utilise de nombreuses boîtes à outils et autres qui ne sont pas i18n, et vous pouvez donc encore recevoir de rares messages qui n'apparaissent qu'en anglais.
+</p>
+
+<h1>Créer une nouvelle traduction</h1>
+<p>
+  Scada-LTS est un système entièrement multilingue. Si Scada-LTS n'est pas livré dans la langue souhaitée, il est facile de créer un fichier de traduction afin qu'au moins votre instance "parle" la langue dont vous avez besoin. Pour ajouter une langue, il faut d'abord éditer le fichier "WEB-INF/classes/i18n.properties" en ajoutant les informations sur la langue que vous souhaitez ajouter. Le format des données est "&lt;code de la langue&gt;=&lt;nom de la langue&gt;", où "code de la langue" est le code ISO 639-1 de la langue, et "nom de la langue" est le nom de la langue tel qu'il est connu dans sa propre langue. La langue sera ainsi ajoutée à la liste des langues connues dans le système.
+</p>
+
+<p>
+  Maintenant, il faut préparer une liste de traductions littérales. Créez un nouveau fichier dans le répertoire "WEB-INF/classes/" appelé "messages_&lt;code langue&gt;.properties". Pour simplifier le processus, il est utile de copier le contenu du fichier des littéraux anglais et de faire les traductions nécessaires.
+</p>
+
+<p>
+  Enfin, vous devez traduire la documentation contextuelle (comme le document que vous consultez en ce moment). Pour ce faire, créez un nouveau répertoire sous "WEB-INF/dox/" nommé d'après le code de langue, et faites une version traduite de tous les documents qui se trouvent sous le répertoire anglais ("en").
+</p>
+
+<p>
+  Pour vous assurer que votre fichier de traduction persiste dans les nouvelles versions de Scada-LTS, veuillez le renvoyer à Serotonin Software où il sera fusionné dans le pool de sources principal.
+</p>

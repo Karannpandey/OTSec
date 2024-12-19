@@ -1,0 +1,48 @@
+<!--
+    Mango - Open Source M2M - http://mango.serotoninsoftware.com
+    Copyright (C) 2006-2011 Serotonin Software Technologies Inc.
+    @auteur Matthew Lohbihler
+    
+    Ce programme est un logiciel libre : vous pouvez le redistribuer et/ou le modifier
+    aux termes de la licence publique générale GNU telle que publiée par
+    la Free Software Foundation, soit la version 3 de la licence, ou
+    (à votre choix) toute version ultérieure.
+
+    Ce programme est distribué dans l'espoir qu'il sera utile,
+    mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de
+    la qualité marchande ou l'adéquation à un usage particulier.  Voir le
+    Licence publique générale GNU pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la licence publique générale de GNU
+    en même temps que ce programme.  Si ce n'est pas le cas, voir http://www.gnu.org/licenses/.
+ -->
+<h1>Vue d'ensemble</h1>
+<p>
+  L'éditeur expéditeur HTTP envoie chaque mise à jour de point (ou changement, selon le cas) à une URL de destination donnée.
+</p>
+
+<h1>HTTP propriétés de l'expéditeur</h1>
+<p>
+  La sélection <b>Méthode</b> détermine le type de méthode HTTP qui sera utilisé pour fournir les données. Les données envoyées sont identiques dans les deux cas ; la différence est une question de structure du message. La sélection <b>URL</b> définit la ressource à laquelle envoyer les données. Les schémas valides sont "http" et "https". Le serveur peut être un nom de domaine ou une adresse IP. Les chemins d'accès et les chaînes de requête sont également valides.
+</p>
+<p>
+  Une liste de <b>En-têtes statiques</b> et <b>Paramètres statiques</b> peut également être ajoutée. Ces données sont incluses avec chaque requête envoyée à l'URL. Il s'agit donc d'un endroit approprié pour inclure des références d'autorisation ou d'autres artefacts d'identification. Pour ajouter un en-tête et un paramètre statique, entrez sa clé et sa valeur, puis cliquez sur l'icône <img src="images/add.png"/>. Pour supprimer un en-tête ou un paramètre statique existant, cliquez sur l'icône <img src="images/bullet_delete.png"/> associée à l'entrée.
+</p>
+<p>
+  La sélection <b>Date format</b> détermine comment l'éditeur formatera les horodatages associés à des valeurs ponctuelles. Le format "de base" est de la forme "yyyyMMddHHmmss". "Fuseau horaire" est similaire, mais comprend plus d'informations concernant la localisation de l'horodatage. Il est de la forme "yyyy-MM-dd'T'HH:mm:ss 'Z'". "UTC" utilise une valeur numérique qui représente le nombre de millisecondes écoulées depuis minuit le 1er janvier 1970.
+</p>
+
+<h1>Réponse du HTTP</h1>
+<p>
+  Tout autre code de réponse que "200 OK" est considéré comme une erreur et une alarme sera déclenchée. En outre, tout contenu de réponse inclus avec une réponse OK est considéré comme une information d'avertissement. Le réglage <b>Raise du résultat d'alerte</b> contrôle si l'existence d'un contenu de réponse provoque le déclenchement d'une alarme d'information incluant le contenu du message d'événement.
+</p>
+
+<h1>Tests de configuration</h1>
+<p>
+  Une demande de test peut être envoyée - en utilisant la configuration donnée mais en incluant uniquement des paramètres statiques - en cliquant sur le bouton "Envoyer les paramètres statiques". Le résultat de la tentative d'envoi sera affiché sous les boutons. Pour annuler un test avant qu'il ne s'arrête de lui-même, cliquez sur le bouton "Annuler".
+</p>
+
+<h1>Points publiés</h1>
+<p>
+  La section <b>Points</b> énumère les points à publier. La publication des points peut être activée (<img src="images/brick_go.png"/>) ou désactivée (<img src="images/brick_stop.png"/>). Désactiver un point permet de ne pas l'utiliser sans avoir à le supprimer explicitement. Le <b>nom du paramètre</b> est la clé qui sera utilisée pour le point dans les paramètres de la requête. La valeur sera la valeur actuelle du point. Sélectionnez <b>Inclure l'horodatage</b> pour inclure dans la demande un paramètre qui contient l'heure de mise à jour de la valeur. La clé pour l'heure sera "__time", et la date sera encodée selon la valeur du format de date. (Voir la documentation "Formats de date/heure" pour plus d'informations).
+</p>

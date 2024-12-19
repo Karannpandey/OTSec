@@ -1,0 +1,17 @@
+<!--
+    Mango - M2M de código abierto - http://mango.serotoninsoftware.com 
+    Derechos de autor (C) 2006-2011 Serotonin Software Technologies Inc.
+    El autor Matthew Lohbihler    
+    Este programa es software libre: puedes redistribuirlo y/o modificarlo. bajo los términos de la Licencia Pública General de GNU,
+    publicada por la Fundación de Software Libre, ya sea la versión 3 de la licencia, o (su elección) cualquier versión posterior.
+    Este programa se distribuye con la esperanza de que sea útil,  pero SIN NINGUNA GARANTÍA; sin siquiera la garantía implícita de comerciabilidad o idoneidad para un propósito particular.  
+    Vea el Licencia Pública General de GNU para más detalles.
+    Debería haber recibido una copia de la Licencia Pública General de GNU.Al mismo tiempo que este programa.  Si no, véase http://www.gnu.org/licenses/.
+ -->
+<h1>Visión general</h1>
+<p>Qué hacer
+  Esta fuente de datos se utiliza para reunir información genérica de Pachube. Los datos se organizan en Pachube en flujos, que son colecciones de flujos de datos. Dado que un flujo de datos corresponde a un punto de Mango, la definición de un punto de Pachube se hace especificando tanto un identificador de flujo como de corriente. Es una fuente de datos de encuestas.</p>
+
+<h1>Configuración</h1>
+<p>Cada fuente de datos requiere un <b>Nombre</b>, que puede ser cualquier descripción. El <b>Período de Actualización</b> determina la frecuencia de la petición HTTP a Pachube. Ten en cuenta que, dependiendo de tu cuenta de Pachube, pueden aplicarse restricciones a las solicitudes de la API. Ver <a href="http://community.pachube.com/api#rate_limit">http://community.pachube.com/api#rate_limit</a> para más detalles.</p>
+<p>La tecla <b>API</b> es necesaria para acceder a los datos privados. Lo encontrarás en el área de "mi configuración" cuando entres en tu cuenta de Pachube. Los campos <b>tiempo fuera</b> y <b>Reintenta</b> determinan cuánto tiempo hay que esperar a que el servidor web devuelva los datos, y cuántas veces hay que reintentar la conexión en caso de fallo. Si se agotan todos los intentos, se desencadena un evento de excepción de la fuente de datos.</p>

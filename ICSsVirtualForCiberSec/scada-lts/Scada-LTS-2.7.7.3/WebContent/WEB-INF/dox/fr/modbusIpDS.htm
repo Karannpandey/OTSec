@@ -1,0 +1,59 @@
+<!--
+    Mango - Open Source M2M - http://mango.serotoninsoftware.com
+    Copyright (C) 2006-2011 Serotonin Software Technologies Inc.
+    @auteur Matthew Lohbihler
+    
+    Ce programme est un logiciel libre : vous pouvez le redistribuer et/ou le modifier
+    aux termes de la licence publique générale GNU telle que publiée par
+    la Free Software Foundation, soit la version 3 de la licence, ou
+    (à votre choix) toute version ultérieure.
+
+    Ce programme est distribué dans l'espoir qu'il sera utile,
+    mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de
+    la qualité marchande ou l'adéquation à un usage particulier.  Voir le
+    Licence publique générale GNU pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la licence publique générale de GNU
+    en même temps que ce programme.  Si ce n'est pas le cas, voir http://www.gnu.org/licenses/.
+ -->
+<h1>Vue d'ensemble</h1>
+<p>
+  La source de données Modbus IP est utilisée pour rassembler les données des équipements Modbus accessibles sur un réseau I/P. Les équipements peuvent se trouver dans un réseau local ou un intranet, ou peuvent également se trouver n'importe où sur l'internet. Il s'agit d'une source de données d'interrogation.
+</p>
+
+<h1>Configuration</h1>
+<p>
+  Chaque source de données nécessite un <b>Nom</b>, qui peut être n'importe quelle description. Le <b>Période de mise à jour</b> détermine la fréquence à laquelle l'équipement Modbus est interrogé pour des données. La vérification <b>Quantize</b> entraîne un retard dans le démarrage de la source de données, de sorte que les interrogations se produisent à un moment "arrondi" (par exemple, si l'interrogation a lieu toutes les 10 secondes, les interrogations se produiront à la 10e seconde, à la 20e seconde, etc.) ). Sinon, le scrutin commencera immédiatement. Les champs <b>Timeout</b> et <b>Retries</b> déterminent le comportement du système en cas d'échec du scrutin. La source de données attend le nombre de millisecondes de délai d'attente donné pour une réponse de l'équipement. Si elle n'est pas reçue, la demande sera réessayée le nombre de fois indiqué.
+</p>
+<p>
+  La case à cocher <b> Lots contigus seulement</b> peut être utilisée pour spécifier que l'implémentation modbus ne doit pas tenter d'optimiser des requêtes de valeur disparates en une seule requête. Si vous cochez cette case, l'implémentation n'effectuera des demandes de valeurs multiples que lorsque ces valeurs forment un espace de registre contigu.
+</p>
+<p>
+  La case <b>Create slave monitor points</b> indique si les points de surveillance des esclaves doivent être automatiquement créés par la source de données. Un point de surveillance d'esclave est un point binaire qui indique l'état actuel d'un esclave. Si une demande d'interrogation à un esclave échoue en raison d'un dépassement de temps ou d'une erreur, l'esclave est considéré comme hors ligne. Ces points peuvent alors être utilisés pour le contrôle, tout comme les autres points.
+</p>
+<p>
+  Les champs <b>Max read bit count</b>, <b>Max read register count</b>, et <b>Max write register count</b> count contrôlent la taille des demandes par lots. La spécification Modbus fournit des valeurs par défaut pour ces valeurs, mais certains matériels peuvent imposer des limites différentes.
+</p>
+<p>
+  Trois <b>Type de transport</b>s sont pris en charge. Consultez la documentation de votre équipement pour déterminer quel paramètre peut être utilisé.
+</p>
+<ul>
+  <li>
+    Le paramètre <b>TCP</b> utilise une nouvelle socket TCP pour chaque sondage. (La valeur de réessai donnée s'applique lorsque des exceptions de connexion se produisent lors de l'ouverture de la socket. Le délai d'attente utilisé pour la connexion dépend de la pile TCP utilisée). Ce paramètre est utile si l'équipement est interrogé peu fréquemment.
+  </li>
+  <li>
+    Le paramètre <b>TCP avec keep-alive</b> crée une connexion TCP lors du premier sondage, qui est laissée ouverte pour être réutilisée. Si la connexion est fermée pour une raison quelconque, une nouvelle connexion est créée si nécessaire. Le comportement des exceptions de connexion pour cette option est le même que pour TCP. C'est le paramètre recommandé pour la plupart des utilisateurs car il permet une communication efficace et robuste tout en évitant de nombreux problèmes de configuration typiques de l'UDP.
+  </li>
+  <li>
+    Le réglage <b>UDP</b> utilise les paquets UDP pour la communication. Ce paramètre offre la plus grande efficacité du réseau, mais nécessite généralement une configuration plus importante du réseau puisque Mango et l'équipement doivent être visibles sur le réseau (par opposition à TCP où Mango peut se trouver derrière un pare-feu).
+  </li>
+</ul>
+
+<p>
+  Les paramètres <b>Hôte</b> et <b>Port</b> déterminent comment trouver l'équipement Modbus sur le réseau. L'hôte peut être un nom de domaine ou une adresse IP.
+</p>
+
+<h1>Lecture des nœuds</h1>
+<p>
+  Les réseaux peuvent être scannés pour détecter les nœuds esclaves à l'aide de l'utilitaire de scan. Cette fonction itére de l'ID esclave 1 à 240, en envoyant à chacun un ReadExceptionStatus (code de fonction 7). Si une réponse est reçue (en utilisant le délai d'attente et les paramètres de réessai donnés), le nœud est considéré comme disponible. Notez que tous les équipements ne prennent pas en charge ce code de fonction, de sorte que de faux négatifs sont possibles.
+</p>

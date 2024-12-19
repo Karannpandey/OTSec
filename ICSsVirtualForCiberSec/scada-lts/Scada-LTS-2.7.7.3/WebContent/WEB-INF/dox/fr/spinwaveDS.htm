@@ -1,0 +1,27 @@
+<!--
+    Mango -Open Source M2M - http://mango.serotoninsoftware.com
+    Copyright (C) 2006-2011 Serotonin Software Technologies Inc.
+    @auteur Matthew Lohbihler
+    
+    Ce programme est un logiciel libre : vous pouvez le redistribuer et/ou le modifier
+    aux termes de la licence publique générale GNU telle que publiée par
+    la Free Software Foundation, soit la version 3 de la licence, ou
+    (à votre choix) toute version ultérieure.
+
+    Ce programme est distribué dans l'espoir qu'il sera utile,
+    mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de
+    la qualité marchande ou l'adéquation à un usage particulier.  Voir le
+    Licence publique générale GNU pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la licence publique générale de GNU
+    en même temps que ce programme.  Si ce n'est pas le cas, voir http://www.gnu.org/licenses/.
+ -->
+<h1>Vue d'ensemble</h1>
+<p>La source de données Spinwave est utilisée pour recueillir des données à partir de dispositifs Spinwave connectés à une passerelle locale, et accessibles via une communication RS232 ou RS485 (nécessite un adaptateur). Cette source de données reçoit des mises à jour régulières des dispositifs connectés ; elle ne pollue pas.</p>
+
+<h1>Configuration</h1>
+<p>Chaque source de données nécessite un <b>Nom</b>, qui peut être n'importe quelle description. La sélection <b>Port</b> fournit une liste de tous les ports série disponibles sur le matériel hôte. Cela correspond au port dans lequel la passerelle Spinwave est connectée. La version <b>Message</b> dépend du matériel que vous utilisez. Consultez la documentation de votre Spinwave pour plus de détails.</p>
+<p><b>Les adresses des capteurs</b> sont généralement trouvées en utilisant la fonctionnalité d'écoute des capteurs décrite ci-dessous, bien que si vous connaissez les adresses uniques de votre matériel, vous pouvez les saisir manuellement. Après avoir saisi la valeur de l'adresse, cliquez sur l'icône <img src="images/add.png"/> pour l'ajouter à la liste des adresses connues.</p>
+
+<h1>Capteur d'ondes spongieuses à l'écoute</h1>
+<p>Une fois que la passerelle Spinwave a été connectée à l'hôte, il est possible de lancer un auditeur qui attend l'arrivée des messages. En général, les appareils sont configurés pour envoyer des messages toutes les 21 secondes, mais d'autres réglages sont possibles. Pour ajouter les adresses de tous les dispositifs qui ont été écoutés à la liste des adresses de capteurs, cliquez sur le bouton "Ajouter les capteurs trouvés à la liste".</p>

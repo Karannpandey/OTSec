@@ -1,0 +1,48 @@
+<!--
+    Mango -Open Source M2M - http://mango.serotoninsoftware.com
+    Copyright (C) 2006-2011 Serotonin Software Technologies Inc.
+    @auteur Matthew Lohbihler
+    
+    Ce programme est un logiciel libre : vous pouvez le redistribuer et/ou le modifier
+    aux termes de la licence publique générale GNU telle que publiée par
+    la Free Software Foundation, soit la version 3 de la licence, ou
+    (à votre choix) toute version ultérieure.
+
+    Ce programme est distribué dans l'espoir qu'il sera utile,
+    mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de
+    la qualité marchande ou l'adéquation à un usage particulier.  Voir le
+    Licence publique générale GNU pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la licence publique générale de GNU
+    en même temps que ce programme.  Si ce n'est pas le cas, voir http://www.gnu.org/licenses/.
+ -->
+<h1>Vue d'ensemble</h1>
+
+<p>Le formatage permet de mettre en forme une valeur brute afin de la rendre plus explicite pour l'utilisateur. Les options de format dépendent du type de la valeur à afficher. Ainsi seuls les formats applicables à la valeur d'un point s'afficheront dans la liste déroulante du champ <b>Type</b>.</p>
+
+<h1>Binaire</h1>
+<p>Le type <b>Binaire</b> permet à l'utilisateur de définir un label pour représenter chacun des deux états binaires(0 et 1). Tous les labels sont autorisés. Vous pouvez aussi définir une couleur pour chaque état. Exemples typiques d'étiquettes off/on, marche/arrêt, ou vrai/faux.</p>
+
+<p>Le format par défaut pour une valeur binaire est <b>Simple</b>. Il affiche la valeur brute, 0 ou 1.</p>
+
+<h1>Numérique-</h1>
+<p>L'option <b>Analogique</b> permet à l'utilisateur de définir un <b>Format</b> qui précisera par exemple le nombre de décimales à afficher, et la présence de séparateurs de millier. (Consultez la documentation "Format nombre"). Un <b>Suffixe</b> peut également être ajouté pour afficher les unités de la valeur. Les suffixes peuvent contenir des entités HTML tel que °(écrit '&deg;') Pour l'affichage des pages . Consultez le site <a href="http://www.w3.org/TR/REC-html40/sgml/entities.html" target="_blank">http://www.w3.org/TR/REC-html40/sgml/entities.html</a> 
+ </p>
+
+<p>Le type <b>Simple</b> est le format par défaut pour les valeurs numériques. Il affiche la valeur sans modification.</p>
+
+<p>Le type <b>Plage</b> permet de définir un format de nombre <b>Format</b> (Consultez la documentation "Format nombre"), et des textes de votre choix pour représenter une valeur selon des plages de valeurs. On peut assigner à chaque plage une couleur distincte. Le champ format sera appliqué si la valeur ne correspond à aucune plage définie. Par exemple, on peut trier une température "froid", "normal" et "chaud", et associer une couleur pour chaque plage.</p>
+
+<p>Le type <b>Temps</b> permet à l'utilisateur de définir un <b>Format</b> (Consultez la documentation "date/time format"). Un format de date typique serait "JJ,MM,yyyy". Une heure serait "HH:mm:ss". Les formats Date et heures peuvent être combinés si nécessaire. Il est également possible de convertir des temps en millisecondes. Des exposants puissance 10 seront utilisées pour ces conversions.
+  Par exemples pour convertir des secondes entrez le paramètre 3, pour des microsecondes entrez -3. Si la valeur est déjà en millisecondes, entrez 0. Les valeurs de temps sont supposées débuter à 0 
+  le 1 janvier 1970 à minuit</p>
+
+<h1>Multistate</h1>
+
+<p>L'option <b>Simple</b> est le format par défaut pour les valeurs multistate. Cela affiche la valeur brute sans changement.</p>
+
+<p>l'option <b>Multistate</b> permet d'associer un texte, arbitrairement choisi, à la valeur d'un état pour représenter les différents états du point. Chaque état peut aussi prendre une couleur différente. Si un état n'a pas de label associé, la valeur sera affichée. Exemples typiques de labels on/off/désactivé, ou off/chaud/froid.</p>
+
+<h1>Alphanumerique</h1>
+
+<p>L'option <b>Simple</b> est le seul format alphanumerique. Les valeurs brutes seront affichées, accompagnées en option d'un <b>Suffixe</b>.</p>

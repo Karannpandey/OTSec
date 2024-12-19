@@ -1,0 +1,40 @@
+<!--
+    Mango - Open Source M2M - http://mango.serotoninsoftware.com
+    Copyright (C) 2006-2011 Serotonin Software Technologies Inc.
+    @auteur Matthew Lohbihler
+    
+    Ce programme est un logiciel libre : vous pouvez le redistribuer et/ou le modifier
+    aux termes de la licence publique générale GNU telle que publiée par
+    la Free Software Foundation, soit la version 3 de la licence, ou
+    (à votre choix) toute version ultérieure.
+
+    Ce programme est distribué dans l'espoir qu'il sera utile,
+    mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de
+    la qualité marchande ou l'adéquation à un usage particulier.  Voir le
+    Licence publique générale GNU pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la licence publique générale de GNU
+    en même temps que ce programme.  Si ce n'est pas le cas, voir http://www.gnu.org/licenses/.
+ -->
+<h1>Vue d'ensembles</h1>
+<p>Les détecteurs d'événements composés sont utilisés pour détecter des conditions parmi plusieurs événements en même temps. Au lieu de se contenter de noter quand une valeur est trop élevée ou trop basse, si un appareil est dans un état donné ou s'il s'agit d'un jour donné de la semaine, les détecteurs composés vous permettent de définir des relations logiques entre tous ces éléments. Par exemple, vous pouvez détecter des situations où une valeur est trop élevée ou trop basse et où un autre appareil est dans un état donné, mais pas un jour donné de la semaine.</p>
+<p>Les détecteurs composés agissent comme des détecteurs de conditions logiques parmi les détecteurs simples existants. Ainsi, tous les détecteurs simples entre lesquels vous voulez établir des relations doivent déjà exister. Voir Détecteurs d'événements et événements programmés pour plus d'informations.</p>
+<p>Notez que bien qu'il existe de nombreux types d'événements, seuls les détecteurs d'événements ponctuels et les événements programmés peuvent être utilisés dans la construction des détecteurs d'événements composés.</p>
+
+<h1>Liste des détecteur de composés</h1>
+<p>Pour ajouter un nouveau détecteur composé, cliquez sur l'icône <img src="images/multi_bell_add.png"/>. Pour modifier un détecteur existant, cliquez sur le nom du détecteur dans la liste "Détecteurs d'événements composés".</p>
+
+<h1>Édition des détails des détecteurs composés</h1>
+<p>Le <b>nom du détecteur</b> est utilisé pour référencer visuellement le détecteur en cas d'alarme, ou comme source pour un gestionnaire d'événements. Il est recommandé d'utiliser un nom unique pour chaque détecteur, mais ce n'est pas obligatoire.</p>
+<p>Le <b>Niveau d'alarme</b> détermine si le détecteur déclenche une alarme lorsqu'il est actif, et si oui, la gravité de l'alarme. Consultez la page d'aide générale pour obtenir des informations sur les alarmes.</p>
+<p>Sélectionner <b>Retour à la normale</b> détermine si l'alarme déclenchée lorsque le détecteur est actif est automatiquement retournée à la normale lorsque le détecteur devient inactif. Si l'option Retour à la normale n'est pas sélectionnée, toute alarme déclenchée devra être acquittée manuellement.</p>
+<p>Un détecteur composé peut être <b>Désactivé</b> pour qu'il ne fonctionne pas. Cela peut être utile si vous ne souhaitez pas supprimer le détecteur, mais aussi si vous ne voulez pas qu'il soit activé actuellement. De plus, le système peut automatiquement désactiver un détecteur si les détecteurs ponctuels ou les événements programmés dont il dépend sont supprimés ou désactivés.</p>
+<p>Pour enregistrer un détecteur composé, cliquez sur l'icône <img src="images/save.png"/> en haut à droite. Pour supprimer un détecteur existant, cliquez sur l'icône <img src="images/delete.png"/>.</p>
+
+<h1>Bâtiment des conditions</h1>
+<p> Les conditions sont des énoncés logiques construits à partir de détecteurs simples existants (c'est-à-dire des détecteurs ponctuels ou des événements programmés). Les opérateurs logiques typiques sont utilisés pour définir la condition globale, y compris et (&amp;&amp;), ou (||), et non (!). Des symboles sont utilisés à la place des mots afin d'éviter toute ambiguïté. Les parenthèses peuvent être utilisées pour regrouper des sections de la déclaration.</p>
+<p>Les détecteurs ponctuels et les événements programmés sont référencés à l'aide d'une abréviation dérivée d'un indicateur de type ("P" pour détecteur ponctuel, "S" pour événement programmé), et du numéro d'identification interne de l'élément. Pour plus de commodité, la liste de tous les détecteurs simples disponibles est fournie dans un arbre situé sous les détails des détecteurs composés. Les noms des détecteurs sont suivis du numéro d'identification abrégé qui sera utilisé. En cliquant sur le nom du détecteur, l'identifiant sera inséré dans l'énoncé de la condition à l'emplacement actuel du curseur.</p>
+<p>Cliquer sur l'icône <img src="images/accept.png"/> entraîne la validation de l'énoncé de la condition.</p>
+
+<h1>Priorité de l'opérateur</h1>
+<p>Les opérateurs logiques ont l'ordre de préséance suivant : parenthèses, pas, et, ou. Pour plus d'informations sur les règles de priorité, voir la section "Priorité mathématique" <a href="http://en.wikipedia.org/wiki/Order_of_operations" target="_blank">here</a>.</p>

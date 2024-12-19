@@ -1,0 +1,23 @@
+<!--
+    Mango - Open Source M2M - http://mango.serotoninsoftware.com
+    Copyright (C) 2006-2011 Serotonin Software Technologies Inc.
+    @auteur Matthew Lohbihler
+    
+    Ce programme est un logiciel libre : vous pouvez le redistribuer et/ou le modifier
+    aux termes de la licence publique générale GNU telle que publiée par
+    la Free Software Foundation, soit la version 3 de la licence, ou
+    (à votre choix) toute version ultérieure.
+
+    Ce programme est distribué dans l'espoir qu'il sera utile,
+    mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de
+    la qualité marchande ou l'adéquation à un usage particulier.  Voir le
+    Licence publique générale GNU pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la licence publique générale de GNU
+    en même temps que ce programme.  Si ce n'est pas le cas, voir http://www.gnu.org/licenses/.
+ -->
+<p>Le <b>Type de données</b> est la représentation de la valeur par Mango. Les données reçues sont automatiquement converties dans le type de données requis.  Le <b>Valeur RegEx</b> détermine où dans le contenu renvoyé trouver la valeur du point. Voir la documentation "Expressions régulières" pour plus d'informations. Notez que seule la <i>première instance</i> de l'expression trouvée dans le contenu est utilisée.</p>
+<p>La case à cocher <b>Ignorer en cas de disparition</b> indique si les valeurs manquantes sur une page doivent être considérées comme des conditions d'erreur. Si elle n'est pas cochée et que la valeur n'est pas trouvée dans le contenu, un événement d'exception de source de données sera déclenché. Si elle est cochée, l'événement est supprimé, et le point n'est pas mis à jour.</p>
+<p>Pour le type de données binaires, la valeur <b>Binaire 0</b> peut être définie. Si la valeur trouvée dans le contenu correspond, le point sera mis à jour avec 0. Sinon, le point est mis à jour avec 1. Pour le type de données numériques, un <b>Nombre format</b> peut être défini, ce qui fournit des informations sur la façon dont la valeur du texte trouvée par la RegEx doit être analysée. Voir la documentation "Formats des nombres" pour plus d'informations.</p>
+<p>A <b>Temps RegEx</b> peut être défini pour localiser l'horodatage de la valeur dans le contenu renvoyé. Si le RegEx est défini, un <b>Format de l'heure</b> doit également être saisi, ce qui fournit des informations sur la manière dont l'heure du texte trouvée par le RegEx doit être analysée. Voir la documentation "Formats de date/heure" pour plus d'informations.</p>
+<p>Pour tester votre RegEx par rapport au contenu actuel à l'URL donnée, cliquez sur l'icône <img src="images/accept.png"/> associée.</p>

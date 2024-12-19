@@ -6,7 +6,7 @@ networks:
 
 services:
   attacker:
-    image: sflorenz05/attacker:v0.1
+    image: attacker:latest
     working_dir: /attacker
     volumes:
       - ../../attacker:/attacker
